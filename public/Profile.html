@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+	
+	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" type = "text/css" href="css/bootstrap-grid.css">
+	<link rel="stylesheet" type = "text/css" href="css/bootstrap-reboot.css">
+	<link rel="stylesheet" type = "text/css" href="css/bootstrap.css">
+	
+    <!-- update the version number as needed -->
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-firestore.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/Common.js"></script>
+	<script src="js/sha.js"></script>
+	
+  </head>
+  	<body class="homepage is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<section id="header">
+					
+				</section>
+				<section id="main">
+					<div class="container">
+						<div class="card" id="card">
+							<div class="card-body" id="cardBody">
+					
+							</div>
+						</div>
+					</div>
+				</section>
+				
+			<!-- Footer -->
+				<section id="footer">
+					
+				</section>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="js/jquery.min.js"></script>
+			<script src="js/jquery.dropotron.min.js"></script>
+			<script src="js/browser.min.js"></script>
+			<script src="js/breakpoints.min.js"></script>
+			<script src="js/util.js"></script>
+			<script src="js/main.js"></script>
+			<script>
+				var user = firebase.auth().currentUser;
+				firebase.auth().onAuthStateChanged(function(user) {
+					if (user) {
+						db.collection("Users").get().then((querySnapshot) => {
+							querySnapshot.forEach((doc) => {
+								console.log(doc.id);
+								console.log(doc.data().Email);
+								console.log(user.email);
+								if(user.email === doc.data().Email){
+									console.log("in if loop");
+									var getProfile = db.collection("Users").doc(doc.id);
+									getProfile.get().then(function(docs){
+											console.log("UserID: " + docs.id);
+											$('<div class="card-header">'+docs.data().Username+'</div>').prependTo('#card');
+											$('<div class="card-text">Full Name:&nbsp'+docs.data().FirstName +" "+ docs.data().LastName+'</div>').appendTo('#cardBody');
+											$('<div class="card-text">Gender:&nbsp'+docs.data().Gender+'</div>').appendTo('#cardBody');
+											$('<div class="card-text">Email:&nbsp'+docs.data().Email+'</div>').appendTo('#cardBody');
+												if(docs.data().UserType === 3){
+													$('<div class="card-text">Usertype:&nbsp Admin</div>').appendTo('#cardBody');	
+												}
+												else if(docs.data().UserType === 2){
+													$('<div class="card-text">Usertype:&nbsp Staff</div>').appendTo('#cardBody');
+												}
+												else{
+													$('<div class="card-text">Usertype:&nbsp Public</div>').appendTo('#cardBody');
+												}
+											$('<div class="card-text">Address:&nbsp '+docs.data().Address+'</div>').appendTo('#cardBody');
+											$('<div class="card-text">Contact Number:&nbsp '+docs.data().ContactNumber+'</div>').appendTo('#cardBody');
+											$('<div class="card-text">DOB:&nbsp '+docs.data().Dob+'</div>').appendTo('#cardBody');
+										});
+								}
+							});
+						});
+					} else {
+						console.log("No user is signed in");
+					}
+				});
+				
+			</script>
+	</body>
+</html>

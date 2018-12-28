@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+	
+	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" type = "text/css" href="css/bootstrap-grid.css">
+	<link rel="stylesheet" type = "text/css" href="css/bootstrap-reboot.css">
+	<link rel="stylesheet" type = "text/css" href="css/bootstrap.css">
+	
+    <!-- update the version number as needed -->
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-firestore.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/Common.js"></script>
+	<script src="js/sha.js"></script>
+	
+  </head>
+  	<body class="homepage is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<section id="header">
+					
+				</section>
+				<section id="main">
+					<div class="container">
+						<form id = "form1" method="post" action="index.html">
+							<h2>Sign in to CHI</h2>
+								<table>
+									<tr>
+										<td class="Ftypes">
+											<b>Email</b>
+										</td>
+										<td class="Btypes">
+											<input type="email" name="Email" id = "email" required>
+										</td>
+									</tr>
+									<tr>
+										<td class="Ftypes">
+											<b>Password</b>
+										</td>
+										<td class="Btypes">
+											<input type="password" name="password" id="password" required>
+											<div class="errorPw"></div>
+										</td>
+									</tr>
+								</table>
+								<input type = "submit" value = "Sign in" name = "btnSignin" onclick="signingIn();"/>
+						</form>
+					</div>
+				</section>
+				
+				
+			<!-- Footer -->
+				<section id="footer">
+					
+				</section>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="js/jquery.min.js"></script>
+			<script src="js/jquery.dropotron.min.js"></script>
+			<script src="js/browser.min.js"></script>
+			<script src="js/breakpoints.min.js"></script>
+			<script src="js/util.js"></script>
+			<script src="js/main.js"></script>
+	</body>
+</html>
