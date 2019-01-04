@@ -31,6 +31,7 @@ function createUser(){
 	var contactnumber = document.getElementById("cNum").value;
 	var dob = document.getElementById("dob").value;
 	signUp(email, password);
+	
 	db.collection("Users").get().then((querySnapshot) => {
 		querySnapshot.forEach((doc) => {
 			userid = doc.id;

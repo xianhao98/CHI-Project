@@ -29,9 +29,21 @@
 				</section>
 				<section id="main">
 					<div class="container">
-						<div class="card" id="card">
-							<div class="card-body" id="cardBody">
-					
+						<div class="row">
+							<div class="col-xs-12 col-sm-3 center">
+								<span class="profile-picture" id="ProfilePic">
+									
+								</span>
+								<div class="space space-4"></div>
+							
+							</div>
+							<div class="col-xs-12 col-sm-9">
+								<h4 class="blue" id="FName">
+									
+								</h4>
+								<div class="profile-user-info" id="ProfileInfo">
+									
+								</div>
 							</div>
 						</div>
 					</div>
@@ -65,22 +77,23 @@
 									var getProfile = db.collection("Users").doc(doc.id);
 									getProfile.get().then(function(docs){
 											console.log("UserID: " + docs.id);
-											$('<div class="card-header">'+docs.data().Username+'</div>').prependTo('#card');
-											$('<div class="card-text">Full Name:&nbsp'+docs.data().FirstName +" "+ docs.data().LastName+'</div>').appendTo('#cardBody');
-											$('<div class="card-text">Gender:&nbsp'+docs.data().Gender+'</div>').appendTo('#cardBody');
-											$('<div class="card-text">Email:&nbsp'+docs.data().Email+'</div>').appendTo('#cardBody');
+											$('<img class="editable img-responsive" alt="Avatar" id="avatar2" src='+docs.data().UserImg+' width="99.9%">').appendTo('#ProfilePic');
+											$('<span class="middle">Full Name:&nbsp'+docs.data().FirstName +" "+ docs.data().LastName+'</span>').appendTo('#FName');
+											$('<div class="profile-info-row"><div class="profile-info-name">Username</div><div class="profile-info-value"><span>'+docs.data().Username+'</span></div></div>').appendTo('#ProfileInfo');
+											$('<div class="profile-info-row"><div class="profile-info-name">Gender</div><div class="profile-info-value"><span>'+docs.data().Gender+'</span></div></div>').appendTo('#ProfileInfo');
+											$('<div class="profile-info-row"><div class="profile-info-name">Email</div><div class="profile-info-value"><span>'+docs.data().Email+'</span></div></div>').appendTo('#ProfileInfo');
 												if(docs.data().UserType === 3){
-													$('<div class="card-text">Usertype:&nbsp Admin</div>').appendTo('#cardBody');	
+													$('<div class="profile-info-row"><div class="profile-info-name">Usertype</div><div class="profile-info-value"><span>Admin</span></div></div>').appendTo('#ProfileInfo');	
 												}
 												else if(docs.data().UserType === 2){
-													$('<div class="card-text">Usertype:&nbsp Staff</div>').appendTo('#cardBody');
+													$('<div class="profile-info-row"><div class="profile-info-name">Usertype</div><div class="profile-info-value"><span>Staff</span></div></div>').appendTo('#ProfileInfo');
 												}
 												else{
-													$('<div class="card-text">Usertype:&nbsp Public</div>').appendTo('#cardBody');
+													$('<div class="profile-info-row"><div class="profile-info-name">Usertype</div><div class="profile-info-value"><span>public</span></div></div>').appendTo('#ProfileInfo');
 												}
-											$('<div class="card-text">Address:&nbsp '+docs.data().Address+'</div>').appendTo('#cardBody');
-											$('<div class="card-text">Contact Number:&nbsp '+docs.data().ContactNumber+'</div>').appendTo('#cardBody');
-											$('<div class="card-text">DOB:&nbsp '+docs.data().Dob+'</div>').appendTo('#cardBody');
+											$('<div class="profile-info-row"><div class="profile-info-name">Address</div><div class="profile-info-value"><span>'+docs.data().Address+'</span></div></div>').appendTo('#ProfileInfo');
+											$('<div class="profile-info-row"><div class="profile-info-name">Contact Number</div><div class="profile-info-value"><span>'+docs.data().ContactNumber+'</span></div></div>').appendTo('#ProfileInfo');
+											$('<div class="profile-info-row"><div class="profile-info-name">Date Of Birth</div><div class="profile-info-value"><span>'+docs.data().Dob+'</span></div></div>').appendTo('#ProfileInfo');
 										});
 								}
 							});
