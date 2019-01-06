@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+	
+	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" type = "text/css" href="css/bootstrap-grid.css">
+	<link rel="stylesheet" type = "text/css" href="css/bootstrap-reboot.css">
+	<link rel="stylesheet" type = "text/css" href="css/bootstrap.css">
+	
+    <!-- update the version number as needed -->
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-firestore.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/Common.js"></script>
+	<script src="js/sha.js"></script>
+	
+  </head>
+  	<body class="homepage is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<section id="header">
+					
+				</section>
+				<section id="main">
+					<div class="container">
+						
+						<h2 id="head">Edit Profile</h2>
+						<form id = "form1" method="post" action="index.html">
+							<legend>Personal Information</legend>
+								<table>
+										<tr>
+											<td class="Ftypes">
+												<b>First Name</b>
+											</td>
+											
+											<td class="Btypes">
+												<input type="text" name="Fname" id = "fName" required>
+											</td>
+										</tr>
+										<tr>
+											<td class="Ftypes">
+												<b>Last Name</b>
+											</td>
+											
+											<td class="Btypes">
+											<input type="text" name="Lname" id="lName" required>
+											</td>
+										</tr>
+										<tr>
+											<td class="Ftypes">
+												<b>Address</b>
+											</td>
+											
+											<td class="Btypes">
+												<textarea name="Address" id="address" required></textarea>
+											</td>
+										</tr>
+										<tr>
+											<td class="Ftypes">
+												<b>Gender(M/F)</b>
+											</td>
+											<td class="Btypes">
+												<input type="radio" name="Gender" value="Male"  id = "M" checked>Male
+												<input type="radio" name="Gender" value="Female" id = "F" >Female
+											</td>
+										</tr>
+										<tr>
+											<td class="Ftypes"><b>Date Of Birth(yyyy-mm-dd)</b></td><td class="Btypes">
+												<input id = "dob" type="text" name="Dob" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" title="Wrong date format Eg. yyyy-mm-dd">
+											</td>
+										</tr>
+										<tr>
+											<td class="Ftypes"><b>Contact Number</b></td><td class="Btypes">
+												<input id = "cNum" type="text" name="Cnum" pattern="^[8-9]\d{6}[0-9]$" max="8" title="Wrong number format Eg. 91234567">
+											</td>
+										</tr>
+								</table>
+								<input type = "submit" value = "Submit" name = "btnSubmit" onclick="editProfile();"/>
+						</form>
+					</div>
+				</section>
+				
+				
+			<!-- Footer -->
+				<section id="footer">
+					
+				</section>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="js/jquery.min.js"></script>
+			<script src="js/jquery.dropotron.min.js"></script>
+			<script src="js/browser.min.js"></script>
+			<script src="js/breakpoints.min.js"></script>
+			<script src="js/util.js"></script>
+			<script src="js/main.js"></script>
+			<script>
+				setTimeout( function(){
+					console.log(Email);
+					db.collection("Users").get().then((querySnapshot) => {
+						querySnapshot.forEach((doc) => {
+							if(doc.data().Email === Email){
+								userid = doc.id;
+								username = doc.data().Username;
+								password = doc.data().Password;
+								email = doc.data().Email;
+								userType = doc.data().UserType;
+								document.getElementById("fName").value = doc.data().FirstName;
+								document.getElementById("lName").value = doc.data().LastName;
+								document.getElementById("address").value = doc.data().Address;
+								if(doc.data().Gender === "Male"){
+									document.getElementById("M").checked = true;
+									document.getElementById("F").checked = false;
+								}
+								else{
+									document.getElementById("M").checked = false;
+									document.getElementById("F").checked = true;
+								}
+								document.getElementById("dob").value = doc.data().Dob;
+								document.getElementById("cNum").value = doc.data().ContactNumber;
+							}
+						});
+					});
+				}, 1000 );	
+			</script>
+	</body>
+</html>

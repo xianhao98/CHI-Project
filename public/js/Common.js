@@ -13,23 +13,68 @@ db.settings({
   timestampsInSnapshots: true
 });
 var userid;
+var Email;
+var username;
+var password;
+var firstname;
+var lastname;
+var gender;
+var email;
+var address;
+var contactnumber;
+var dob;
+var userType;
 
-function createUser(){
-	var username = document.getElementById("uName").value;
-	var password = document.getElementById("Cpassword").value;
-	var firstname = document.getElementById("fName").value;
-	var lastname = document.getElementById("lName").value;
-	var gender;
+function editProfile(){
+	console.log(username);
+	firstname = document.getElementById("fName").value;
+	lastname = document.getElementById("lName").value;
 		if (document.getElementById("M").checked){
 			gender = document.getElementById("M").value;
 		}
 		else{
 			gender = document.getElementById("F").value;
 		}
-	var email = document.getElementById("email").value;
-	var address = document.getElementById("address").value;
-	var contactnumber = document.getElementById("cNum").value;
-	var dob = document.getElementById("dob").value;
+	address = document.getElementById("address").value;
+	contactnumber = document.getElementById("cNum").value;
+	dob = document.getElementById("dob").value;
+	db.collection("Users").doc(userid).set({
+			Username: username,
+			Password: password,
+			FirstName: firstname,
+			LastName: lastname,
+			Gender: gender,
+			Email: email,
+			UserType: userType,
+			Address: address,
+			ContactNumber: contactnumber,
+			Dob: dob
+		})
+		.then(function() {
+			console.log("Document is written to database");
+		})
+		.catch(function(error) {
+			console.error("Error adding document: ", error);
+		});
+	setTimeout( function(){
+		window.location.href = "https://chi-project-database.firebaseapp.com/Profile";
+	}, 2000 );
+}
+function createUser(){
+	username = document.getElementById("uName").value;
+	password = document.getElementById("Cpassword").value;
+	firstname = document.getElementById("fName").value;
+	lastname = document.getElementById("lName").value;
+		if (document.getElementById("M").checked){
+			gender = document.getElementById("M").value;
+		}
+		else{
+			gender = document.getElementById("F").value;
+		}
+	email = document.getElementById("email").value;
+	address = document.getElementById("address").value;
+	contactnumber = document.getElementById("cNum").value;
+	dob = document.getElementById("dob").value;
 	signUp(email, password);
 	
 	db.collection("Users").get().then((querySnapshot) => {
@@ -59,7 +104,7 @@ function createUser(){
 		.catch(function(error) {
 			console.error("Error adding document: ", error);
 		});
-	}, 1000 );	
+	}, 100 );	
 	
 	setTimeout( function(){
 		window.location.href = "https://chi-project-database.firebaseapp.com";
@@ -117,7 +162,8 @@ function checkSigninUsers(){
 		if (user) {
 			$("#login").show();
 			$("#signout").show();
-			console.log(user.email + "is Sign in");
+			Email = user.email;
+			console.log(Email + "is Sign in");
 		} else {
 			$("#NReg").show();
 			$("#Nsignin").show();
