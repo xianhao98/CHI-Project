@@ -5,13 +5,8 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  
+
   <ion-navbar>
-    <ion-buttons start>
-      <button ion-button menuToggle clear>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-    </ion-buttons>
     <ion-title>Login</ion-title>
   </ion-navbar>
 
@@ -19,22 +14,38 @@
 
 
 <ion-content padding>
+  <form #submitLoginForm="ngForm">
+    <!-- EMAIL -->
+    <ion-list>
+      <ion-item>
+        <ion-label floating>
+          Email
+        </ion-label>
+        <ion-input pattern="^[a-zA-Z0-9._]+[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" type="email"
+          [(ngModel)]="user.email" name="email" #email="ngModel" required></ion-input>
+      </ion-item>
 
-  
+      <p ion-text *ngIf="email.invalid && submitted == true" color="danger" padding-left>
+        Email is invalid
+      </p>
 
-  <ion-item>
-    <ion-label floating>Email Address</ion-label>
-    <ion-input type="text" [(ngModel)]="user.email"></ion-input>
-  </ion-item>
+      <!-- PASSWORD -->
+      <ion-item>
+        <ion-label floating>
+          Password
+        </ion-label>
+        <ion-input type="password" [(ngModel)]="user.password" name="password" #password="ngModel"
+          required></ion-input>
+      </ion-item>
 
-  <ion-item>
-      <ion-label floating>Password</ion-label>
-      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
-  </ion-item>
-
-
-
-  <button ion-button block (click)="login()">Login</button>
-  <button ion-button block clear (click)="register()">Or create an account</button>
-
+      <p ion-text *ngIf="password.invalid && submitted == true" color="danger" padding-left>
+        Password is required
+      </p>
+    </ion-list>
+    
+    <!-- LOGIN button -->
+    <button ion-button block (click)="login(submitLoginForm)">Login</button>
+    <!-- Go to REGISTER page button -->
+    <button ion-button block clear (click)="register()">Or create an account</button>
+  </form>
 </ion-content>
