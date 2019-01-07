@@ -10,6 +10,8 @@ import { LoginPage } from '../pages/login/login';
 import EventsPage from '../pages/events/events';
 import { EventsListPage } from '../pages/events-list/events-list';
 import { EventCategoriesPage } from '../pages/event-categories/event-categories';
+import { AboutUsPage } from '../pages/about-us/about-us';
+import { PartnershipsPage } from '../pages/partnerships/partnerships';
 
 @Component({
   templateUrl: 'app.html'
@@ -30,8 +32,11 @@ export class MyApp {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
+    // IF LOGGED IN / LOGGED OUT
     this.pages = [
       { title: 'Home', component: HomePage },
+      { title: 'About Us', component: AboutUsPage },
+      { title: 'Partnerships & Collaboration', component: PartnershipsPage },
       { title: 'Events', component: EventCategoriesPage },
       { title: 'Log Out', component: null },
     ];

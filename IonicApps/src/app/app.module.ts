@@ -23,6 +23,7 @@ import { ConferencesPage } from '../pages/conferences/conferences';
 import { MasterclassesPage } from '../pages/masterclasses/masterclasses';
 import { EventsListPage } from '../pages/events-list/events-list';
 import { LeadershipPage } from '../pages/leadership/leadership';
+import { EventModalPage } from '../pages/event-modal/event-modal';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { LeadershipPage } from '../pages/leadership/leadership';
     ConferencesPage,
     MasterclassesPage,
     LeadershipPage,
+    EventModalPage,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +57,7 @@ import { LeadershipPage } from '../pages/leadership/leadership';
     ConferencesPage,
     MasterclassesPage,
     LeadershipPage,
+    EventModalPage,
   ],
   providers: [
     StatusBar,

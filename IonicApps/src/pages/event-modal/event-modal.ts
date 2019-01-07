@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, AlertController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController, ModalController, ViewController } from 'ionic-angular';
 import { User } from '../../models/user';
 import 'firebase/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -9,24 +9,22 @@ import { Observable } from 'rxjs-compat/Observable';
 import 'rxjs/add/operator/toPromise';
 import firebase, { firestore } from 'firebase';
 import { HomePage } from '../home/home';
-import { EventModalPage } from '../event-modal/event-modal';
 
 /**
- * Generated class for the EventsListPage page.
+ * Generated class for the EventModalPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
-var eventid: string;
+var eventDetailId: string;
 
 @IonicPage()
 @Component({
-  selector: 'page-events-list',
-  templateUrl: 'events-list.html',
+  selector: 'page-event-modal',
+  templateUrl: 'event-modal.html',
 })
-
-export class EventsListPage {
+export class EventModalPage {
 
   event = {} as Event;
 
@@ -34,33 +32,29 @@ export class EventsListPage {
   eventDoc: AngularFirestoreDocument<Event>;
   events: Observable<Event[]>;
 
-  model: Event;
-
   constructor(
     public db: AngularFirestore,
-    public alertCtrl: AlertController,
-    private modalCtrl: ModalController,
-    private afAuth: AngularFireAuth,
-    public navCtrl: NavController, 
-    public navParams: NavParams) {
+    private viewCtrl: ViewController,
+    private navParams: NavParams) {
 
     this.eventCollection = this.db.collection('events');
     this.events = this.eventCollection.valueChanges();
-
-
+    
     this.db.collection("events").get().subscribe((querySnapshot) => {
       querySnapshot.forEach(function(doc) {
         console.log(doc.id, " => ", doc.data());
       });
     });
 
-  }
-
-  openModal() {
-
-    const eventModal = this.modalCtrl.create(EventModalPage);
-    eventModal.present();
-  }
-
+    // this.getEventDetail(eventDetailId);
   
+    }
+
+    closeModal() {
+      this.viewCtrl.dismiss();
+    }
+
+    // getEventDetail(eventDetailId: string): AngularFirestoreDocument<Event> {
+    //   return this.db.collection('events').doc(eventDetailId);
+    // }
 }

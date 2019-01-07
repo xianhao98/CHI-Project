@@ -42,7 +42,6 @@ export class RegisterPage {
     public navParams: NavParams) {
 
       this.userCollection = this.db.collection('Users');
-      
       this.users = this.userCollection.valueChanges();
       // Account
       this.user.email = this.navParams.get('email');
@@ -74,7 +73,7 @@ export class RegisterPage {
             userid = doc.id;
             this.stringSlice(userid);
             console.log(userid);
-          })
+        })
         });
 
         setTimeout(function() {

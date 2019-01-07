@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>eventsList</ion-title>
+    <ion-title>All Events</ion-title>
   </ion-navbar>
 
   <!-- <ion-toolbar>
@@ -28,22 +28,44 @@
 
 
 <ion-content padding>
-  
-  <ion-list>
+  <!-- <ion-list *ngFor="let event of events | async">
+    <ion-item-sliding>
+      <ion-item>
+        {{ event.eventName }}
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button icon-only (click)="edit(event)">
+          <ion-icon name="settings"></ion-icon>
+        </button>
+        <button ion-button icon-only color="danger" (click)="delete(event)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list> -->
 
-    <ion-card>
+  <ion-list *ngFor="let event of events | async">
+
+    <ion-card (click)="openModal()">
       <ion-card-header>
-        FutureHealth 2017
+        {{event.eventName}}
       </ion-card-header>
-      <img src="https://firebasestorage.googleapis.com/v0/b/chi-project-database.appspot.com/o/eventCategories%2Fredtheatre.jpg?alt=media&token=bfaae3fd-1bbc-4730-a9a2-dbf77fcc7760"/>
+      <img src="https://firebasestorage.googleapis.com/v0/b/chi-project-database.appspot.com/o/conferences%2Fconference_futurehealth2017.JPG?alt=media&token=3dc54762-a841-4b2e-8338-37f7a63b320b"/>
       <ion-card-content>
-        <!-- <ion-card-title>
-          Nine Inch Nails Live
-        </ion-card-title> -->
-        Date:
-        <p>8 Nov - 10 Nov 2017</p>
+        Start Date:
+        <p>
+          {{event.eventDateStart}}
+        </p>
+        
+        End Date:
+        <p>
+          {{event.eventDateEnd}}
+        </p>
+
         Venue:
-        <p>Lee Kong Chian School of Medicine</p>
+        <p>
+          {{event.eventVenue}}
+        </p>
       </ion-card-content>
     </ion-card>
 

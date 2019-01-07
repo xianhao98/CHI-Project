@@ -1,17 +1,20 @@
+import { DateTime } from "ionic-angular";
+
 export interface User {
     // Account details
-    email: string;
-    password: string;
-    username: string;
-    userType: number;
+    username: string,
+    email: string,
+    password: string,
+    userType: number,
 
     // Profile
-    firstName: string;
-    lastName: string;
-    gender: string;
-    dob: string;
+    firstName: string,
+    lastName: string,
+    gender: string,
+    dob: string,
+    userImg: string,
 
     // Contact
-    contactNo: string;
-    address: string;
+    contactNo: number,
+    address: string,
 }

@@ -1,0 +1,23 @@
+<!--
+  Generated template for the EventModalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar *ngFor="let event of events | async">
+    <ion-title>{{event.eventName}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="closeModal()">Close</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <p>
+    {{event.eventDateStart}}
+  </p>
+</ion-content>

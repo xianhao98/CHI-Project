@@ -4,6 +4,18 @@
       position: relative;
       text-align: center;
     }
+
+    .card-title-home {
+        position: absolute;
+      top: 36%;
+      font-size: 2.0em;
+      width: 100%;
+      font-weight: bold;
+        background-blend-mode: darken;
+        background-color: rgb(255, 255, 255);
+      
+      color: rgb(181, 35, 35);
+    }
   
     .card-title {
       position: absolute;
@@ -22,4 +34,4 @@
       color: #fff;
     }
   
-  }
+}

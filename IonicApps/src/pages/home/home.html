@@ -6,73 +6,31 @@
       </button>
     </ion-buttons>
     <ion-title>Home</ion-title>
-    <ion-buttons end>
+    <!-- <ion-buttons end>
       <button ion-button clear (click)="toLoginPage()">
         Login
       </button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-
-  <div>
-    <h5>Centre for Healthcare Innovation</h5>
-  </div>
+<ion-content padding class="card-background-page">
   
-  <ion-grid>
-    <!-- ROW 1 -->
-    <ion-row>
+  <img padding src="https://firebasestorage.googleapis.com/v0/b/chi-project-database.appspot.com/o/CHI%20logo%20rectangle.png?alt=media&token=e1973f60-a86a-41c1-9230-7d4e7123b9c9"/>
 
-      <!-- COL 1 -->
-      <ion-col>
-        <ion-card>
-          <ion-icon></ion-icon>
-          <ion-title>
-            About Us
-          </ion-title>
-        </ion-card>
-      </ion-col>
-      
-      <!-- COL 2 -->
-      <ion-col>
-        <ion-card>
-          <ion-icon></ion-icon>
-          <ion-title>
-            About Us
-          </ion-title>
-        </ion-card>
-      </ion-col>
-      
-      <!-- COL 3 -->
-      <ion-col>
-        <ion-card>
-          <ion-icon></ion-icon>
-          <ion-title>
-            About Us
-          </ion-title>
-        </ion-card>
-      </ion-col>
-    </ion-row>
+      <ion-card (click)="toAboutUsPage()">
+        <img src="https://firebasestorage.googleapis.com/v0/b/chi-project-database.appspot.com/o/banners%2Faboutus_banner%5B1%5D.JPG?alt=media&token=3105b0a5-0d06-47c8-ae47-32e903c9f79b"/>
+        <div class="card-title-home">About Us</div>
+      </ion-card>
+  
+      <ion-card (click)="toPartnershipsPage()">
+        <img src="https://firebasestorage.googleapis.com/v0/b/chi-project-database.appspot.com/o/banners%2Fpartnership_banner.JPG?alt=media&token=7b473464-b93f-401e-b144-b577d6a4f682"/>
+        <div class="card-title-home">Partnerships & Collaborations</div>
+      </ion-card>
 
-    <!-- ROW 2 -->
-    <ion-row>
-
-      <!-- COL 1 -->
-      <ion-col>
-
-      </ion-col>
-
-      <!-- COL 2 -->
-      <ion-col>
-
-      </ion-col>
-
-      <!-- COL 3 -->
-      <ion-col>
-
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-</ion-content>
+      <ion-card (click)="toEventsPage()">
+        <img src="https://firebasestorage.googleapis.com/v0/b/chi-project-database.appspot.com/o/banners%2Fevents_banner.JPG?alt=media&token=eb2c6c90-c2c4-4c0c-aae2-610ebac9f52f"/>
+        <div class="card-title-home">Events</div>
+      </ion-card>
+  
+  </ion-content>

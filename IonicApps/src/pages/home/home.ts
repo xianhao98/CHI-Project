@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../login/login';
+import { EventCategoriesPage } from '../event-categories/event-categories';
 
 @Component({
   selector: 'page-home',
@@ -17,8 +18,8 @@ export class HomePage {
 
   }
 
-  toLoginPage() {
-    this.navCtrl.push(LoginPage);
+  toEventsPage() {
+    this.navCtrl.push(EventCategoriesPage);
   }
 
   // ionViewWillLoad() {
