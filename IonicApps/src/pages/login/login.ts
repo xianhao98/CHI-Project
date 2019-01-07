@@ -5,7 +5,7 @@ import { RegisterPage } from '../register/register';
 import { AngularFireAuth } from 'angularfire2/auth';
 import EventsPage from '../events/events';
 import { HomePage } from '../home/home';
-import { EventsListPage } from '../events-list/events-list';
+import { NgForm } from '@angular/forms';
 
 /**
  * Generated class for the LoginPage page.
@@ -22,6 +22,8 @@ import { EventsListPage } from '../events-list/events-list';
 export class LoginPage {
 
   user = {} as User;
+
+  submitted = false;
   
   constructor(
     private afAuth: AngularFireAuth,
@@ -29,16 +31,24 @@ export class LoginPage {
     public navParams: NavParams) {
   }
 
-  async login(user: User) {
-    try {
-      const result = await this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password);
-      console.log(result);
-      if(result) {
-        this.navCtrl.setRoot(EventsListPage);
+  async login(form: NgForm) {
+
+    this.submitted = true;
+
+    if (form.valid)
+    {
+      try {
+        const result = await this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password);
+        console.log(result);
+        if(result) {
+          this.navCtrl.setRoot(HomePage);
+          console.log("Successfully logged in")
+        }
       }
-    }
-    catch (e) {
-      console.error(e);
+      catch (e) {
+        console.error(e);
+        console.log("Wrong email or password")
+      }
     }
   }
 

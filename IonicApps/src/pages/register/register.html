@@ -17,43 +17,70 @@
 
   <ion-list>
     <ion-item>
-      <ion-input placeholder="Username" type="text" [(ngModel)]="user.username"></ion-input>
+      <ion-label stacked>
+        Username
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="user.username"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-input placeholder="Email" type="text" [(ngModel)]="user.email"></ion-input>
+      <ion-label stacked>
+        Email
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="user.email"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-input placeholder="Password" type="password" [(ngModel)]="user.password"></ion-input>
+      <ion-label stacked>
+        Password
+      </ion-label>
+      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
     </ion-item>
   
 
     <ion-item>
-      <ion-input placeholder="First Name" type="text" [(ngModel)]="user.firstName"></ion-input>
+      <ion-label stacked>
+        First Name
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="user.firstName"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-input placeholder="Last Name" type="text" [(ngModel)]="user.lastName"></ion-input>
+      <ion-label stacked>
+        Last Name
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="user.lastName"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Gender</ion-label>
+      <ion-label stacked>
+        Gender
+      </ion-label>
       <ion-select #newSelect [(ngModel)]="gender" (ionChange)="onChange(newSelect.text)">
         <ion-option value="Male">Male</ion-option>
         <ion-option value="Female">Female</ion-option>
       </ion-select>
     </ion-item>
+
     <ion-item>
+      <ion-label stacked>
+        Date of Birth
+      </ion-label>
       <ion-input placeholder="DD-MM-YYYY" type="text" [(ngModel)]="user.dob"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-input placeholder="Contact No" type="text" [(ngModel)]="user.contactNo"></ion-input>
+      <ion-label stacked>
+        Contact No
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="user.contactNo"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-input placeholder="Address" type="text" [(ngModel)]="user.address"></ion-input>
+      <ion-label stacked>
+        Address
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="user.address"></ion-input>
     </ion-item>
   </ion-list>
 
