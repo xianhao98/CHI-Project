@@ -24,19 +24,29 @@ import { MasterclassesPage } from '../pages/masterclasses/masterclasses';
 import { EventsListPage } from '../pages/events-list/events-list';
 import { LeadershipPage } from '../pages/leadership/leadership';
 import { EventModalPage } from '../pages/event-modal/event-modal';
+import { ProfilePage } from '../pages/profile/profile';
+import { AboutUsPage } from '../pages/about-us/about-us';
+import { PartnershipsPage } from '../pages/partnerships/partnerships';
+import { SpeakerModalPage } from '../pages/speaker-modal/speaker-modal';
+import { SpeakersPage } from '../pages/speakers/speakers';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
+    ProfilePage,
     LoginPage,
     RegisterPage,
     EventCategoriesPage,
     EventsListPage,
     ConferencesPage,
+    SpeakersPage,
+    SpeakerModalPage,
     MasterclassesPage,
     LeadershipPage,
     EventModalPage,
+    AboutUsPage,
+    PartnershipsPage,
   ],
   imports: [
     BrowserModule,
@@ -50,14 +60,19 @@ import { EventModalPage } from '../pages/event-modal/event-modal';
   entryComponents: [
     MyApp,
     HomePage,
+    ProfilePage,
     LoginPage,
     RegisterPage,
     EventCategoriesPage,
     EventsListPage,
     ConferencesPage,
+    SpeakersPage,
+    SpeakerModalPage,
     MasterclassesPage,
     LeadershipPage,
     EventModalPage,
+    AboutUsPage,
+    PartnershipsPage,
   ],
   providers: [
     StatusBar,

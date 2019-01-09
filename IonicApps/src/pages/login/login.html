@@ -14,6 +14,9 @@
 
 
 <ion-content padding>
+  
+  <img padding src="https://firebasestorage.googleapis.com/v0/b/chi-project-database.appspot.com/o/CHI%20logo%20rectangle.png?alt=media&token=e1973f60-a86a-41c1-9230-7d4e7123b9c9"/>
+  
   <form #submitLoginForm="ngForm">
     <!-- EMAIL -->
     <ion-list>
@@ -44,8 +47,8 @@
     </ion-list>
     
     <!-- LOGIN button -->
-    <button ion-button block (click)="login(submitLoginForm)">Login</button>
+    <button ion-button block [round]="isRound" (click)="login(submitLoginForm)">Login</button>
     <!-- Go to REGISTER page button -->
-    <button ion-button block clear (click)="register()">Or create an account</button>
+    <button ion-button block clear color="secondary" (click)="register()">Or create an account</button>
   </form>
 </ion-content>

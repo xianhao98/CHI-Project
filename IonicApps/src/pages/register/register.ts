@@ -27,9 +27,8 @@ export class RegisterPage {
 
   user = {} as User;
 
-  email: string;
-  password: string;
-  // userID: any;
+  defaultProfilePic: string = "https://firebasestorage.googleapis.com/v0/b/chi-project-database.appspot.com/o/Userpic%2FdefaultProfile.jpg?alt=media&token=431fb1f6-9a47-4530-aae2-076e5a5230a4";
+
   userCollection: AngularFirestoreCollection<any>;
   userDoc: AngularFirestoreDocument<any>;
   users: Observable<any>;
@@ -52,6 +51,7 @@ export class RegisterPage {
       this.user.firstName = this.navParams.get('firstName');
       this.user.lastName = this.navParams.get('lastName');
       this.user.dob = this.navParams.get('dob');
+      this.user.userImg = this.defaultProfilePic;
       // Contact
       this.user.contactNo = this.navParams.get('contactNo');
       this.user.address = this.navParams.get('address');
@@ -90,6 +90,7 @@ export class RegisterPage {
             LastName: user.lastName,
             Gender: user.gender,
             Dob: user.dob,
+            UserImg: user.userImg,
             // Contact
             ContactNumber: user.contactNo,
             Address: user.address,
@@ -112,6 +113,16 @@ export class RegisterPage {
     }
     catch (e) {
       console.error(e);
+      if(e.code == "auth/argument-error") {
+        this.showAlert("Error", "Please complete all fields.");
+      }
+      else if (e.code == "auth/invalid-email") {
+        this.showAlert("Error", "Please enter a valid email")
+      }
+      else {
+        this.showAlert("Error", e);
+      }
+      
     }
   }
 

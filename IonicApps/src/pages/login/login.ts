@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, ToastController, NavController, NavParams, AlertController } from 'ionic-angular';
 import { User } from '../../models/user';
 import { RegisterPage } from '../register/register';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -21,12 +21,16 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginPage {
 
+  isRound: boolean = true;
+
   user = {} as User;
 
   submitted = false;
   
   constructor(
     private afAuth: AngularFireAuth,
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController,
     public navCtrl: NavController, 
     public navParams: NavParams) {
   }
@@ -41,19 +45,45 @@ export class LoginPage {
         const result = await this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password);
         console.log(result);
         if(result) {
-          this.navCtrl.setRoot(HomePage);
           console.log("Successfully logged in")
+          this.navCtrl.setRoot(HomePage);
+          this.presentToast(`Welcome, ${this.user.email}`);
         }
       }
       catch (e) {
         console.error(e);
         console.log("Wrong email or password")
+        this.showAlert("Error", "Email or password is incorrect");
       }
     }
   }
 
   register() {
     this.navCtrl.push(RegisterPage);
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    });
+    console.log('Bread has been toasted.');
+  
+    toast.onDidDismiss(() => {
+      console.log('Toast has been eaten.');
+    });
+  
+    toast.present();
+  }
+
+  showAlert(title, subTitle) {
+    const alert = this.alertCtrl.create({
+      title: title,
+      subTitle: subTitle,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }

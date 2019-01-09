@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>All Events</ion-title>
+    <ion-title>Events</ion-title>
   </ion-navbar>
 
   <!-- <ion-toolbar>
@@ -27,7 +27,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <!-- <ion-list *ngFor="let event of events | async">
     <ion-item-sliding>
       <ion-item>
@@ -44,13 +44,15 @@
     </ion-item-sliding>
   </ion-list> -->
 
+  <h4 padding>All Events</h4>
+
   <ion-list *ngFor="let event of events | async">
 
     <ion-card (click)="openModal()">
-      <ion-card-header>
+      <ion-card-header class="ion-card-header">
         {{event.eventName}}
       </ion-card-header>
-      <img src="https://firebasestorage.googleapis.com/v0/b/chi-project-database.appspot.com/o/conferences%2Fconference_futurehealth2017.JPG?alt=media&token=3dc54762-a841-4b2e-8338-37f7a63b320b"/>
+      <img src="{{event.imgURL}}"/>
       <ion-card-content>
         Start Date:
         <p>
@@ -66,6 +68,7 @@
         <p>
           {{event.eventVenue}}
         </p>
+        <button ion-button block color="primary" (click)="openModal()">Read More</button>
       </ion-card-content>
     </ion-card>
 
