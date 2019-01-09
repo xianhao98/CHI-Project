@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { SpeakersPage } from '../speakers/speakers';
 
 /**
- * Generated class for the ConferencesPage page.
+ * Generated class for the SpeakerModalPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,16 +10,16 @@ import { SpeakersPage } from '../speakers/speakers';
 
 @IonicPage()
 @Component({
-  selector: 'page-conferences',
-  templateUrl: 'conferences.html',
+  selector: 'page-speaker-modal',
+  templateUrl: 'speaker-modal.html',
 })
-export class ConferencesPage {
+export class SpeakerModalPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  toSpeakersPage() {
-    this.navCtrl.push(SpeakersPage);
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad SpeakerModalPage');
   }
 
 }

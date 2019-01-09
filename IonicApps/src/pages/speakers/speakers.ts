@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController, ModalController } from 'ionic-angular';
-import { User } from '../../models/user';
 import 'firebase/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../login/login';
@@ -9,33 +8,31 @@ import { Observable } from 'rxjs-compat/Observable';
 import 'rxjs/add/operator/toPromise';
 import firebase, { firestore } from 'firebase';
 import { HomePage } from '../home/home';
-import { EventModalPage } from '../event-modal/event-modal';
+import { Speaker } from '../../models/speaker';
+import { SpeakerModalPage } from '../speaker-modal/speaker-modal';
 
 /**
- * Generated class for the EventsListPage page.
+ * Generated class for the SpeakersPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
-var eventid: string;
+var speakerid: string;
 
 @IonicPage()
 @Component({
-  selector: 'page-events-list',
-  templateUrl: 'events-list.html',
+  selector: 'page-speakers',
+  templateUrl: 'speakers.html',
 })
+export class SpeakersPage {
 
-export class EventsListPage {
+  speaker = {} as Speaker;
 
-  event = {} as Event;
-
-  eventCollection: AngularFirestoreCollection<Event>;
-  eventDoc: AngularFirestoreDocument<Event>;
-  events: Observable<Event[]>;
-
-  model: Event;
-
+  speakerCollection: AngularFirestoreCollection<Speaker>;
+  speakerDoc: AngularFirestoreDocument<Speaker>;
+  speakers: Observable<Speaker[]>;
+  
   constructor(
     public db: AngularFirestore,
     public alertCtrl: AlertController,
@@ -44,23 +41,23 @@ export class EventsListPage {
     public navCtrl: NavController,
     public navParams: NavParams) {
 
-    this.eventCollection = this.db.collection('events');
-    this.events = this.eventCollection.valueChanges();
+    this.speakerCollection = this.db.collection('Speakers');
+    this.speakers = this.speakerCollection.valueChanges();
 
 
 
-    this.eventCollection.get().subscribe((querySnapshot) => {
+    this.speakerCollection.get().subscribe((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        eventid = doc.id;
-        console.log(eventid);
+        speakerid = doc.id;
+        console.log(speakerid);
       });
     });
 
   }
 
   openModal() {
-    console.log(eventid);
-    this.db.collection("events").doc(eventid).get().subscribe((doc) => {
+    console.log(speakerid);
+    this.db.collection("Speakers").doc(speakerid).get().subscribe((doc) => {
       if (doc.exists) {
         console.log("Document data:", doc.data());
       } else {
@@ -69,11 +66,11 @@ export class EventsListPage {
       }
     })
 
-    const eventModal = this.modalCtrl.create(EventModalPage, {
-      eventDoc
-        : this.eventDoc
+    const speakerModal = this.modalCtrl.create(SpeakerModalPage, {
+      speakerDoc
+        : this.speakerDoc
     });
-    eventModal.present();
+    speakerModal.present();
   }
 
 

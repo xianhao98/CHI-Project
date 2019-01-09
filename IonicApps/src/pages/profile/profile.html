@@ -14,8 +14,23 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Profile</h3>
-
-  <pre>{{userProfile | json | async}}</pre>
-
+        <ion-card>
+          <ion-card-header>
+            {{ (users | async)?.firstName }}
+          </ion-card-header>
+          <ion-avatar>
+            <img src="https://firebasestorage.googleapis.com/v0/b/chi-project-database.appspot.com/o/Userpic%2FdefaultProfile.jpg?alt=media&token=431fb1f6-9a47-4530-aae2-076e5a5230a4"/>
+          </ion-avatar>
+          <ion-card-content>
+            Username:
+            <p>
+              {{ (users | async)?.username }}
+            </p>
+            
+            Email:
+            <p>
+              {{ (users | async)?.email }}
+            </p>
+          </ion-card-content>
+        </ion-card>
 </ion-content>

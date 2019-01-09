@@ -29,12 +29,14 @@ export class MyApp {
     public platform: Platform, 
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen) {
+    this.splashScreen.show();
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     // IF LOGGED IN / LOGGED OUT
     this.pages = [
       { title: 'Home', component: HomePage },
+      { title: 'Profile', component: ProfilePage },
       { title: 'About Us', component: AboutUsPage },
       { title: 'Partnerships & Collaboration', component: PartnershipsPage },
       { title: 'Events', component: EventCategoriesPage },

@@ -46,9 +46,17 @@ export class EventModalPage {
       });
     });
 
-    // this.getEventDetail(eventDetailId);
-  
+    console.log(eventDetailId);
+    this.db.collection("events").doc(eventDetailId).get().subscribe(function(doc) {
+    if (doc.exists) {
+        console.log("Document data:", doc.data());
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
     }
+  })
+}
+
 
     closeModal() {
       this.viewCtrl.dismiss();
