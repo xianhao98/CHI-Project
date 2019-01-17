@@ -12,11 +12,36 @@
 
 </ion-header>
 
-<ion-content class="card-background-page">
+<ion-content>
 
-  <ion-card (click)="toSpeakersPage()">
-    <img src="https://firebasestorage.googleapis.com/v0/b/chi-project-database.appspot.com/o/eventCategories%2Fspeaker.jpeg?alt=media&token=64465a50-be6a-4bb9-bc4b-d6af3172012f" />
-    <div class="card-title">Speakers</div>
-  </ion-card>
+    <h4 padding>Conferences</h4>
+
+    <ion-list *ngFor="let event of events | async">
+  
+      <ion-card (click)="openModal()">
+        <ion-card-header class="ion-card-header">
+          {{event.eventName}}
+        </ion-card-header>
+        <img src="{{event.imgURL}}"/>
+        <ion-card-content>
+          Start Date:
+          <p>
+            {{event.eventDateStart}}
+          </p>
+          
+          End Date:
+          <p>
+            {{event.eventDateEnd}}
+          </p>
+  
+          Venue:
+          <p>
+            {{event.eventVenue}}
+          </p>
+          <button ion-button block color="primary" (click)="openModal()" >Read More</button>
+        </ion-card-content>
+      </ion-card>
+  
+    </ion-list>
 
 </ion-content>

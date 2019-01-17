@@ -40,19 +40,24 @@ export class ProfilePage {
     public navCtrl: NavController,
     public navParams: NavParams) {
 
-    this.userCollection = this.db.collection('Users');
-    this.users = this.userCollection.valueChanges();
+    // this.userCollection = this.db.collection('Users');
+    // this.users = this.userCollection.doc(`user/${auth.uid}`).valueChanges();
     this.showProfile();
   }
 
   showProfile() {
-    this.afAuth.authState.subscribe(auth => {
-      this.db.doc(`user/${auth.uid}`).valueChanges;
-    })
-  }
+    // this.afAuth.authState.subscribe(auth => {
+    //   this.db.doc(`user/${auth.uid}`).valueChanges;
+    // })
 
-  // ionViewWillLoad() {
-  //   this.profileData = this.db.doc(`user/${auth.uid}`).valueChanges();
-  // }
+    // var cityRef = this.db.collection('Users').doc(`user/${auth.uid}`);
+    // var getDoc = cityRef.get().subscribe(doc => {
+    //     if (!doc.exists) {
+    //       console.log('No such document!');
+    //     } else {
+    //       console.log('Document data:', doc.data());
+    //     }
+    //   })
+  }
 
 }

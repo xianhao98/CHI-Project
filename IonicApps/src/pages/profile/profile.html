@@ -16,20 +16,23 @@
 <ion-content padding>
         <ion-card>
           <ion-card-header>
-            {{ (users | async)?.firstName }}
+            <ion-avatar>
+              <img src="https://firebasestorage.googleapis.com/v0/b/chi-project-database.appspot.com/o/Userpic%2FdefaultProfile.jpg?alt=media&token=431fb1f6-9a47-4530-aae2-076e5a5230a4"/>
+            </ion-avatar>
           </ion-card-header>
-          <ion-avatar>
-            <img src="https://firebasestorage.googleapis.com/v0/b/chi-project-database.appspot.com/o/Userpic%2FdefaultProfile.jpg?alt=media&token=431fb1f6-9a47-4530-aae2-076e5a5230a4"/>
-          </ion-avatar>
+          
           <ion-card-content>
+            <p>
+              {{ (users | async)?.FirstName }}
+            </p>
             Username:
             <p>
-              {{ (users | async)?.username }}
+              {{ (users | async)?.Username }}
             </p>
             
             Email:
             <p>
-              {{ (users | async)?.email }}
+              {{ (users | async)?.Email }}
             </p>
           </ion-card-content>
         </ion-card>
