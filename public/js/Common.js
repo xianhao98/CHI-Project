@@ -96,7 +96,8 @@ function createUser(){
 			UserType: 1,
 			Address: address,
 			ContactNumber: contactnumber,
-			Dob: dob
+			Dob: dob,
+			UserImg: "https://firebasestorage.googleapis.com/v0/b/chi-project-database.appspot.com/o/Userpic%2FitElfV3.jpg?alt=media&token=6527ac3e-6ef2-4964-ba4a-b574bd7637f3"
 		})
 		.then(function() {
 			console.log("Document is written to database");
@@ -104,7 +105,7 @@ function createUser(){
 		.catch(function(error) {
 			console.error("Error adding document: ", error);
 		});
-	}, 100 );	
+	}, 650 );	
 	
 	setTimeout( function(){
 		window.location.href = "https://chi-project-database.firebaseapp.com";
