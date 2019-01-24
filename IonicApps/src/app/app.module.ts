@@ -29,6 +29,7 @@ import { AboutUsPage } from '../pages/about-us/about-us';
 import { PartnershipsPage } from '../pages/partnerships/partnerships';
 import { SpeakerModalPage } from '../pages/speaker-modal/speaker-modal';
 import { SpeakersPage } from '../pages/speakers/speakers';
+import { ProgrammePage } from '../pages/programme/programme';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { SpeakersPage } from '../pages/speakers/speakers';
     EventCategoriesPage,
     EventsListPage,
     ConferencesPage,
+    ProgrammePage,
     SpeakersPage,
     SpeakerModalPage,
     MasterclassesPage,
@@ -66,6 +68,7 @@ import { SpeakersPage } from '../pages/speakers/speakers';
     EventCategoriesPage,
     EventsListPage,
     ConferencesPage,
+    ProgrammePage,
     SpeakersPage,
     SpeakerModalPage,
     MasterclassesPage,

@@ -10,6 +10,7 @@ import 'rxjs/add/operator/toPromise';
 import firebase, { firestore } from 'firebase';
 import { HomePage } from '../home/home';
 import { EventModalPage } from '../event-modal/event-modal';
+import { SpeakersPage } from '../speakers/speakers';
 
 /**
  * Generated class for the ConferencesPage page.
@@ -44,7 +45,7 @@ export class ConferencesPage {
     public navParams: NavParams) {
 
     this.eventCollection = this.db.collection('/events', ref =>
-    ref.where('eventType', '==', 'conference'));
+        ref.where('eventType', '==', 'conference'));
     this.events = this.eventCollection.valueChanges();
 
 

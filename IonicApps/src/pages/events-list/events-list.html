@@ -10,20 +10,6 @@
     <ion-title>Events</ion-title>
   </ion-navbar>
 
-  <!-- <ion-toolbar>
-    <ion-segment>
-      <ion-segment-button>
-        Conferences
-      </ion-segment-button>
-      <ion-segment-button>
-        Masterclasses
-      </ion-segment-button>
-      <ion-segment-button>
-        Leadership
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar> -->
-
 </ion-header>
 
 
@@ -48,7 +34,7 @@
 
   <ion-list *ngFor="let event of events | async">
 
-    <ion-card (click)="openModal()">
+    <ion-card>
       <ion-card-header class="ion-card-header">
         {{event.eventName}}
       </ion-card-header>
