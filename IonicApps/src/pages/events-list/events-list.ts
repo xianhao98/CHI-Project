@@ -59,21 +59,10 @@ export class EventsListPage {
   }
 
   openModal() {
-    console.log(eventid);
-    this.db.collection("events").doc(eventid).get().subscribe((doc) => {
-      if (doc.exists) {
-        console.log("Document data:", doc.data());
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
-    })
-
-    const eventModal = this.modalCtrl.create(EventModalPage, {
-      eventDoc
-        : this.eventDoc
-    });
+    const eventModal = this.modalCtrl.create(EventModalPage);
+    console.log("Created a new EventModalPage");
     eventModal.present();
+    console.log("Presented the new EventModalPage");
   }
 
 

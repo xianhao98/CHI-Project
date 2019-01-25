@@ -21,8 +21,6 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginPage {
 
-  isRound: boolean = true;
-
   user = {} as User;
 
   submitted = false;

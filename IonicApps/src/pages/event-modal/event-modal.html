@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar *ngFor="let event of events | async">
-    <ion-title>{{event.eventName}}</ion-title>
+  <ion-navbar>
+    <ion-title></ion-title>
     <ion-buttons end>
       <button ion-button (click)="closeModal()">Close</button>
     </ion-buttons>
@@ -17,7 +17,10 @@
 
 
 <ion-content padding>
-  <p>
-    {{event.eventDateStart}}
-  </p>
+
+  <ion-tabs>
+    <ion-tab tabIcon="people" [root]="tab1">Home</ion-tab>
+  </ion-tabs>
+
+  Event Details
 </ion-content>

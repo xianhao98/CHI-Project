@@ -44,6 +44,7 @@ import { SpeakerModalPage } from '../pages/speaker-modal/speaker-modal';
 import { SpeakerModalPageModule } from '../pages/speaker-modal/speaker-modal.module';
 import { SpeakersPage } from '../pages/speakers/speakers';
 import { SpeakersPageModule } from '../pages/speakers/speakers.module';
+import { ProgrammePage } from '../pages/programme/programme';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { SpeakersPageModule } from '../pages/speakers/speakers.module';
     EventCategoriesPage,
     EventsListPage,
     ConferencesPage,
+    ProgrammePage,
     SpeakersPage,
     SpeakerModalPage,
     MasterclassesPage,
