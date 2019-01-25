@@ -5,8 +5,10 @@ import 'firebase/firestore';
 import { AlertController, IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs-compat/Observable';
 import 'rxjs/add/operator/toPromise';
+import { first } from 'rxjs/operators';
 import { User } from '../../models/user';
 import { auth } from 'firebase';
+import firebase from 'firebase';
 
 /**
  * Generated class for the EventsListPage page.
@@ -14,8 +16,6 @@ import { auth } from 'firebase';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
-var userid: string;
 
 @IonicPage()
 @Component({
@@ -25,12 +25,15 @@ var userid: string;
 
 export class ProfilePage {
 
+  userid: any;
+
+  user = {} as User;
+
   userCollection: AngularFirestoreCollection<User>;
   userDoc: AngularFirestoreDocument<User>;
   users: Observable<User[]>;
-  profileData: Observable<User>;
 
-  user: User;
+  model: User;
 
   constructor(
     public db: AngularFirestore,
@@ -40,24 +43,37 @@ export class ProfilePage {
     public navCtrl: NavController,
     public navParams: NavParams) {
 
-    // this.userCollection = this.db.collection('Users');
-    // this.users = this.userCollection.doc(`user/${auth.uid}`).valueChanges();
-    this.showProfile();
+    var cuser = firebase.auth().currentUser;
+    var username;
+
+    this.userCollection = this.db.collection('Users');
+    firebase.auth().onAuthStateChanged(function (cuser) {
+      if (cuser) {
+        // User is signed in.
+        console.log(cuser);
+        console.log(firebase.firestore().collection('Users'));
+        firebase.firestore().collection('Users').get().then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            console.log(doc.id);
+            if (cuser.email == doc.data().Email) {
+              firebase.firestore().collection('Users').doc(doc.id).get().then(docs => {
+                console.log(docs.data().Username);
+                username = docs.data().Username;
+              })
+            }
+          });
+        });
+      } else {
+        // No user is signed in.
+      }
+    });
+
   }
 
-  showProfile() {
-    // this.afAuth.authState.subscribe(auth => {
-    //   this.db.doc(`user/${auth.uid}`).valueChanges;
-    // })
 
-    // var cityRef = this.db.collection('Users').doc(`user/${auth.uid}`);
-    // var getDoc = cityRef.get().subscribe(doc => {
-    //     if (!doc.exists) {
-    //       console.log('No such document!');
-    //     } else {
-    //       console.log('Document data:', doc.data());
-    //     }
-    //   })
+  getCurrentUser() {
+    
   }
+
 
 }
