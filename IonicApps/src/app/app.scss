@@ -18,3 +18,36 @@
 * ::-webkit-scrollbar {
     display: none;
 }
+
+	
+	ion-app.md [padding] .scroll-content{
+		@media screen and (orientation: landscape){
+			padding: 16px 180px 16px 180px !important;
+		}
+	}
+	
+	#fimg{
+		@media screen and (orientation: landscape){
+			margin-left: auto !important;
+			margin-right: auto !important;
+			width: 30% !important;
+			display: block !important;
+		}
+	}
+	
+	.button-block{
+		@media screen and (orientation: landscape){
+			width: 20% !important;
+			display: unset !important;
+		}
+		
+	}
+	
+	.button-md{
+		@media screen and (orientation: landscape){
+			border-radius: 64px !important;
+			color: #fff !important;
+			background-color: #cd4b4b !important;
+		}
+		
+	}

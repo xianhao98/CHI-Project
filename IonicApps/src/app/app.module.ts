@@ -33,6 +33,7 @@ import { EventsListPageModule } from '../pages/events-list/events-list.module';
 import { LeadershipPage } from '../pages/leadership/leadership';
 import { LeadershipPageModule } from '../pages/leadership/leadership.module';
 import { EventModalPage } from '../pages/event-modal/event-modal';
+import { Tab1 } from '../pages/event-modal/event-modal';
 import { EventModalPageModule } from '../pages/event-modal/event-modal.module';
 import { ProfilePage } from '../pages/profile/profile';
 import { ProfilePageModule } from '../pages/profile/profile.module';
@@ -45,12 +46,14 @@ import { SpeakerModalPageModule } from '../pages/speaker-modal/speaker-modal.mod
 import { SpeakersPage } from '../pages/speakers/speakers';
 import { SpeakersPageModule } from '../pages/speakers/speakers.module';
 import { ProgrammePage } from '../pages/programme/programme';
+import { ProgrammePageModule } from '../pages/programme/programme.module';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
 	ListPage,
+	Tab1,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +75,8 @@ import { ProgrammePage } from '../pages/programme/programme';
 	ProfilePageModule,
 	RegisterPageModule,
 	SpeakerModalPageModule,
-	SpeakersPageModule
+	SpeakersPageModule,
+	ProgrammePageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -93,6 +97,8 @@ import { ProgrammePage } from '../pages/programme/programme';
     AboutUsPage,
     PartnershipsPage,
 	EventsPage,
+	Tab1,
+	ProgrammePage,
   ],
   providers: [
     StatusBar,
