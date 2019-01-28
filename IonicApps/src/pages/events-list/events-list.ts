@@ -31,10 +31,8 @@ export class EventsListPage {
   event = {} as Event;
 
   eventCollection: AngularFirestoreCollection<Event>;
-  eventDoc: AngularFirestoreDocument<Event>;
+  //eventDoc: AngularFirestoreDocument<Event>;
   events: Observable<Event[]>;
-
-  model: Event;
 
   constructor(
     public db: AngularFirestore,

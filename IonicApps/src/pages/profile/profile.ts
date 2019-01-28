@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import 'firebase/firestore';
 import { AlertController, IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs-compat/Observable';
@@ -17,6 +18,8 @@ import firebase from 'firebase';
  * Ionic pages and navigation.
  */
 
+ var username: string;
+
 @IonicPage()
 @Component({
   selector: 'page-profile',
@@ -32,8 +35,7 @@ export class ProfilePage {
   userCollection: AngularFirestoreCollection<User>;
   userDoc: AngularFirestoreDocument<User>;
   users: Observable<User[]>;
-
-  model: User;
+  //users: any = [];
 
   constructor(
     public db: AngularFirestore,
@@ -43,21 +45,32 @@ export class ProfilePage {
     public navCtrl: NavController,
     public navParams: NavParams) {
 
-    var cuser = firebase.auth().currentUser;
-    var username;
+    var cUser = firebase.auth().currentUser;
+    
 
     this.userCollection = this.db.collection('Users');
-    firebase.auth().onAuthStateChanged(function (cuser) {
-      if (cuser) {
+    
+    //this.users = this.userCollection.valueChanges();
+    
+    this.getCurrentUser();
+
+  }
+
+
+  getCurrentUser() {
+    firebase.auth().onAuthStateChanged(function (cUser) {
+      if (cUser) {
         // User is signed in.
-        console.log(cuser);
+        console.log(cUser);
         console.log(firebase.firestore().collection('Users'));
         firebase.firestore().collection('Users').get().then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
             console.log(doc.id);
-            if (cuser.email == doc.data().Email) {
+            if (cUser.email == doc.data().Email) {
               firebase.firestore().collection('Users').doc(doc.id).get().then(docs => {
+                this.userDoc = .doc(doc.id);
                 console.log(docs.data().Username);
+                console.log(this.userDoc);
                 username = docs.data().Username;
               })
             }
@@ -67,12 +80,6 @@ export class ProfilePage {
         // No user is signed in.
       }
     });
-
-  }
-
-
-  getCurrentUser() {
-    
   }
 
 

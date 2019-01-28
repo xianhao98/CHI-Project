@@ -2,7 +2,7 @@ export interface Event {
 
     eventName: string,
     eventDesc: string,
-    eventVenue: string,
+    eventvenue: string,
     eventType: string,
 
     imgUrl?: string,
