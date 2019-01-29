@@ -5,16 +5,18 @@
       text-align: center;
     }
 
+    .card-image {
+      opacity: 0.8;
+    }
+
     .card-title-home {
-        position: absolute;
-		top: 36%;
-		font-size: 2.0em;
-		width: 100%;
-		font-weight: bold;
-        background-blend-mode: darken;
-        background-color: rgb(255, 255, 255);
-      
-      color: rgb(181, 35, 35);
+      position: absolute;
+		  top: 36%;
+		  font-size: 2.8em;
+		  width: 100%;
+		  font-weight: bold;
+      color: red;
+      text-shadow: -4px 3px 5px #000000ad;
     }
   
     .card-title {
@@ -38,7 +40,7 @@
 
 .card-title-home {
 	@media screen and (orientation: landscape){
-        position: absolute !important;
+    position: absolute !important;
 		top: 36% !important;
 		font-size: 4.0em !important;
 		width: 100% !important;
