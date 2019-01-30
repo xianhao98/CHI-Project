@@ -18,7 +18,6 @@ import { SpeakerModalPage } from '../speaker-modal/speaker-modal';
  * Ionic pages and navigation.
  */
 
-var speakerid: string;
 
 @IonicPage()
 @Component({
@@ -26,6 +25,9 @@ var speakerid: string;
   templateUrl: 'speakers.html',
 })
 export class SpeakersPage {
+
+  speakerid: string;
+  eventid: string;
 
   speaker = {} as Speaker;
 
@@ -44,20 +46,28 @@ export class SpeakersPage {
     this.speakerCollection = this.db.collection('Speakers');
     this.speakers = this.speakerCollection.valueChanges();
 
+    this.eventid = navParams.get('eventid');
 
 
+    // All speakers
     this.speakerCollection.get().subscribe((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        speakerid = doc.id;
-        console.log(speakerid);
+        this.speakerid = doc.id;
+        console.log(this.speakerid);
       });
     });
+
+    // this.db.collection('events')
+    //   .doc(this.eventid)
+    //   .collection('speakers')
+    //   .get();
 
   }
 
   openModal() {
-    console.log(speakerid);
-    this.db.collection("Speakers").doc(speakerid).get().subscribe((doc) => {
+    console.log(this.speakerid);
+    // Speaker Profile
+    this.db.collection("Speakers").doc(this.speakerid).get().subscribe((doc) => {
       if (doc.exists) {
         console.log("Document data:", doc.data());
       } else {
@@ -65,6 +75,8 @@ export class SpeakersPage {
         console.log("No such document!");
       }
     })
+    
+    
 
     const speakerModal = this.modalCtrl.create(SpeakerModalPage, {
       speakerDoc
