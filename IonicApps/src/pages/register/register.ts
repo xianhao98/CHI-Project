@@ -32,6 +32,7 @@ export class RegisterPage {
   userCollection: AngularFirestoreCollection<any>;
   userDoc: AngularFirestoreDocument<any>;
   users: Observable<any>;
+  
 
   constructor(
     public db: AngularFirestore,
@@ -45,6 +46,7 @@ export class RegisterPage {
       // Account
       this.user.email = this.navParams.get('email');
       this.user.password = this.navParams.get('password');
+      this.user.confirmPassword = this.navParams.get('confirmPassword');
       this.user.username = this.navParams.get('username');
       this.user.userType = 1;
       // Profile
@@ -62,70 +64,107 @@ export class RegisterPage {
     this.user.gender = value;
   }
 
-  async register(user) {
-    try {
-      const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
-      console.log(result);
-      if (result) {
-
-        this.userCollection.get().subscribe((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            userid = doc.id;
-            this.stringSlice(userid);
-            console.log(userid);
-        })
-        });
-
-        setTimeout(function() {
-          console.log(userid);
-          this.userDoc = firebase.firestore().collection("Users").doc(userid);
-          // Add new document
-          this.userDoc.set({
-            // Account
-            Email: user.email,
-            Password: user.password,
-            Username: user.username,
-            // Profile
-            FirstName: user.firstName,
-            LastName: user.lastName,
-            Gender: user.gender,
-            Dob: user.dob,
-            UserImg: user.userImg,
-            // Contact
-            ContactNumber: user.contactNo,
-            Address: user.address,
-            UserType: user.userType
-          })
-          .then(function() {
-            console.log("Doc written to database");
-          })
-          .catch(function(error) {
-            console.error("Error adding document: ", error);
-          });
-        },1000);
-
-      // Redirect to LoginPage
-      this.navCtrl.push(LoginPage);
-      // Success Alert
-      this.showAlert("Success", "Your account has been created!");
-        
-      }
-    }
-    catch (e) {
-      console.error(e);
-      if(e.code == "auth/argument-error") {
-        this.showAlert("Error", "Please complete all fields.");
-      }
-      else if (e.code == "auth/invalid-email") {
-        this.showAlert("Error", "Please enter a valid email")
-      }
-      else {
-        this.showAlert("Error", e);
-      }
-      
+  passwordsMatch = false;
+  
+  matchPasswords() {
+    if (this.user.confirmPassword == this.user.password) {
+      console.log("Passwords match");
+      this.passwordsMatch = true;
+    } else {
+      console.log("Passwords do not match");
+      this.passwordsMatch = false;
     }
   }
 
+  async register(user) {
+    
+    this.matchPasswords();
+    if ( this.passwordsMatch == true ) {
+      // If Password and Confirm Password match
+      console.log("Passwords match");
+
+
+
+      try {
+        const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
+        console.log(result);
+        if (result) {
+  
+          this.userCollection.get().subscribe((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              userid = doc.id;
+              this.stringSlice(userid);
+              console.log(userid);
+          })
+          });
+  
+          setTimeout(function() {
+            console.log(userid);
+            this.userDoc = firebase.firestore().collection("Users").doc(userid);
+            // Add new document
+            this.userDoc.set({
+              // Account
+              Email: user.email,
+              Password: user.password,
+              Username: user.username,
+              // Profile
+              FirstName: user.firstName,
+              LastName: user.lastName,
+              Gender: user.gender,
+              Dob: user.dob,
+              UserImg: user.userImg,
+              // Contact
+              ContactNumber: user.contactNo,
+              Address: user.address,
+              UserType: user.userType
+            })
+            .then(function() {
+              console.log("Doc written to database");
+            })
+            .catch(function(error) {
+              console.error("Error adding document: ", error);
+            });
+          },1000);
+  
+        // Redirect to LoginPage
+        this.navCtrl.push(LoginPage);
+        
+        // Success Alert
+        this.showAlert("Success", "Your account has been created!");
+          
+        }
+      }
+      catch (e) {
+        console.error(e);
+        if(e.code == "auth/argument-error") {
+          // If form is incomplete
+          this.showAlert("Error", "Please complete all fields.");
+        }
+        else if (e.code == "auth/invalid-email") {
+          // If email is invalid
+          this.showAlert("Invalid Email", "Please enter a valid email")
+        }
+        else {
+          // Any other errors, show error message
+          this.showAlert("Error", e);
+        }
+        
+      }
+
+
+
+      
+    } else {
+      // If Password and Confirm Password do not match
+      console.log("Passwords do not match");
+      this.showAlert("Confirm Password","The passwords you have entered do not match. Please confirm your password.");
+      this.user.password = "";
+      this.user.confirmPassword =  "";
+    }
+    
+  }
+
+  // Custom userid that iterates
   stringSlice(uid) {
     var str = uid;
     var slice = parseInt(str.slice(1,str.length)) + 1;
@@ -133,7 +172,7 @@ export class RegisterPage {
     console.log(userid);
   }
 
-  // Basic Alert, takes in title and subTitle
+  // Basic Alert: takes in title, subTitle
   showAlert(title, subTitle) {
     const alert = this.alertCtrl.create({
       title: title,
