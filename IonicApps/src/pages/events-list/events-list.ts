@@ -10,6 +10,7 @@ import 'rxjs/add/operator/toPromise';
 import firebase, { firestore } from 'firebase';
 import { HomePage } from '../home/home';
 import { EventModalPage } from '../event-modal/event-modal';
+import { SpeakersPage } from '../speakers/speakers';
 
 /**
  * Generated class for the EventsListPage page.
@@ -57,10 +58,11 @@ export class EventsListPage {
   }
 
   openModal() {
-    const eventModal = this.modalCtrl.create(EventModalPage);
-    console.log("Created a new EventModalPage");
-    eventModal.present();
-    console.log("Presented the new EventModalPage");
+    this.navCtrl.push(SpeakersPage);
+    // const eventModal = this.modalCtrl.create(EventModalPage);
+    // console.log("Created a new EventModalPage");
+    // eventModal.present();
+    // console.log("Presented the new EventModalPage");
   }
 
 
