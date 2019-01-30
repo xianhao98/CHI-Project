@@ -68,7 +68,7 @@ export class ProfilePage {
             console.log(doc.id);
             if (cUser.email == doc.data().Email) {
               firebase.firestore().collection('Users').doc(doc.id).get().then(docs => {
-                this.userDoc = .doc(doc.id);
+                this.userDoc = this.db.collection('Users').doc(doc.id);
                 console.log(docs.data().Username);
                 console.log(this.userDoc);
                 username = docs.data().Username;
