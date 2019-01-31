@@ -4,7 +4,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -28,10 +27,8 @@ import { ConferencesPage } from '../pages/conferences/conferences';
 import { ConferencesPageModule } from '../pages/conferences/conferences.module';
 import { MasterclassesPage } from '../pages/masterclasses/masterclasses';
 import { MasterclassesPageModule } from '../pages/masterclasses/masterclasses.module';
-import { EventsListPage } from '../pages/events-list/events-list';
-import { EventsListPageModule } from '../pages/events-list/events-list.module';
-import { LeadershipPage } from '../pages/leadership/leadership';
-import { LeadershipPageModule } from '../pages/leadership/leadership.module';
+import { AllEventsPage } from '../pages/all-events/all-events';
+import { AllEventsPageModule } from '../pages/all-events/all-events.module';
 import { EventModalPage } from '../pages/event-modal/event-modal';
 import { Tab1 } from '../pages/event-modal/event-modal';
 import { EventModalPageModule } from '../pages/event-modal/event-modal.module';
@@ -45,15 +42,14 @@ import { SpeakerModalPage } from '../pages/speaker-modal/speaker-modal';
 import { SpeakerModalPageModule } from '../pages/speaker-modal/speaker-modal.module';
 import { SpeakersPage } from '../pages/speakers/speakers';
 import { SpeakersPageModule } from '../pages/speakers/speakers.module';
-import { ProgrammePage } from '../pages/programme/programme';
-import { ProgrammePageModule } from '../pages/programme/programme.module';
+import { LandingPageModule } from '../pages/landing/landing.module';
+import { LandingPage } from '../pages/landing/landing';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-	ListPage,
-	Tab1,
+    Tab1,
   ],
   imports: [
     BrowserModule,
@@ -63,47 +59,44 @@ import { ProgrammePageModule } from '../pages/programme/programme.module';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AboutUsPageModule,
-	ConferencesPageModule,
-	EventCategoriesPageModule,
-	EventModalPageModule,
-	EventsPageModule,
-	EventsListPageModule,
-	LeadershipPageModule,
-	LoginPageModule,
-	MasterclassesPageModule,
-	PartnershipsPageModule,
-	ProfilePageModule,
-	RegisterPageModule,
-	SpeakerModalPageModule,
-	SpeakersPageModule,
-	ProgrammePageModule,
+    ConferencesPageModule,
+    EventCategoriesPageModule,
+    EventModalPageModule,
+    EventsPageModule,
+    AllEventsPageModule,
+    LandingPageModule,
+    LoginPageModule,
+    MasterclassesPageModule,
+    PartnershipsPageModule,
+    ProfilePageModule,
+    RegisterPageModule,
+    SpeakerModalPageModule,
+    SpeakersPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     ProfilePage,
+    LandingPage,
     LoginPage,
     RegisterPage,
     EventCategoriesPage,
-    EventsListPage,
+    AllEventsPage,
     ConferencesPage,
-    ProgrammePage,
     SpeakersPage,
     SpeakerModalPage,
     MasterclassesPage,
-    LeadershipPage,
     EventModalPage,
     AboutUsPage,
     PartnershipsPage,
-	EventsPage,
-	Tab1,
-	ProgrammePage,
+    EventsPage,
+    Tab1,
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }
