@@ -4,14 +4,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { ProfilePage } from '../pages/profile/profile';
 import { LoginPage } from '../pages/login/login';
-import EventsPage from '../pages/events/events';
-import { EventsListPage } from '../pages/events-list/events-list';
+import { AllEventsPage } from '../pages/all-events/all-events';
 import { EventCategoriesPage } from '../pages/event-categories/event-categories';
 import { AboutUsPage } from '../pages/about-us/about-us';
 import { PartnershipsPage } from '../pages/partnerships/partnerships';
+import { LandingPage } from '../pages/landing/landing';
 
 @Component({
   templateUrl: 'app.html'

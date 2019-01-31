@@ -10,7 +10,6 @@ import 'rxjs/add/operator/toPromise';
 import firebase, { firestore } from 'firebase';
 import { HomePage } from '../home/home';
 import { SpeakersPage } from '../speakers/speakers';
-import { ProgrammePage } from '../programme/programme';
 
 /**
  * Generated class for the EventModalPage page.

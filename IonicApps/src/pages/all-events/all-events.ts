@@ -23,11 +23,10 @@ var eventid: string;
 
 @IonicPage()
 @Component({
-  selector: 'page-events-list',
-  templateUrl: 'events-list.html',
+  selector: 'page-all-events',
+  templateUrl: 'all-events.html',
 })
-
-export class EventsListPage {
+export class AllEventsPage {
 
   event = {} as Event;
 
@@ -58,7 +57,7 @@ export class EventsListPage {
   }
 
   openModal() {
-    this.navCtrl.push(SpeakersPage);
+    this.navCtrl.push(EventModalPage);
     // const eventModal = this.modalCtrl.create(EventModalPage);
     // console.log("Created a new EventModalPage");
     // eventModal.present();

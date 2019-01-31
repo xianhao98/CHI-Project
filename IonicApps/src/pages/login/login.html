@@ -14,41 +14,49 @@
 
 
 <ion-content padding>
-  
-  <img padding id="fimg" src="https://firebasestorage.googleapis.com/v0/b/chi-project-database.appspot.com/o/CHI%20logo%20rectangle.png?alt=media&token=e1973f60-a86a-41c1-9230-7d4e7123b9c9"/>
-  
+
+  <div padding class="center">
+    <img padding id="fimg" src="https://firebasestorage.googleapis.com/v0/b/chi-project-database.appspot.com/o/CHI%20logo%20rectangle.png?alt=media&token=e1973f60-a86a-41c1-9230-7d4e7123b9c9" />
+  </div>
+
   <form #submitLoginForm="ngForm">
-    <!-- EMAIL -->
-    <ion-list>
-      <ion-item>
-        <ion-label floating>
-          Email
-        </ion-label>
-        <ion-input pattern="^[a-zA-Z0-9._]+[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" type="email"
-          [(ngModel)]="user.email" name="email" #email="ngModel" required></ion-input>
-      </ion-item>
 
-      <p ion-text *ngIf="email.invalid && submitted == true" color="danger" padding-left>
-        Email is invalid
-      </p>
+    <div>
+      <!-- EMAIL -->
+      <ion-list padding>
+        <ion-item>
+          <ion-label floating>
+            Email
+          </ion-label>
+          <ion-input pattern="^[a-zA-Z0-9._]+[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" type="email" [(ngModel)]="user.email"
+            name="email" #email="ngModel" required></ion-input>
+        </ion-item>
 
-      <!-- PASSWORD -->
-      <ion-item>
-        <ion-label floating>
-          Password
-        </ion-label>
-        <ion-input type="password" [(ngModel)]="user.password" name="password" #password="ngModel"
-          required></ion-input>
-      </ion-item>
+        <p ion-text *ngIf="email.invalid && submitted == true" color="danger" padding-left>
+          Email is invalid
+        </p>
 
-      <p ion-text *ngIf="password.invalid && submitted == true" color="danger" padding-left>
-        Password is required
-      </p>
-    </ion-list>
-    
-    <!-- LOGIN button -->
-    <button ion-button block round (click)="login(submitLoginForm)">Login</button>
-    <!-- Go to REGISTER page button -->
-    <button ion-button block clear color="secondary" (click)="register()">Or create an account</button>
+        <!-- PASSWORD -->
+        <ion-item>
+          <ion-label floating>
+            Password
+          </ion-label>
+          <ion-input type="password" [(ngModel)]="user.password" name="password" #password="ngModel" required></ion-input>
+        </ion-item>
+
+        <p ion-text *ngIf="password.invalid && submitted == true" color="danger" padding-left>
+          Password is required
+        </p>
+      </ion-list>
+    </div>
+
+
+    <ion-buttons class="buttons" padding>
+      <!-- LOGIN button -->
+      <button ion-button block round (click)="login(submitLoginForm)">Login</button>
+      <!-- Go to REGISTER page button -->
+      <button ion-button block clear color="secondary" (click)="register()">Or create an account</button>
+    </ion-buttons>
   </form>
+
 </ion-content>

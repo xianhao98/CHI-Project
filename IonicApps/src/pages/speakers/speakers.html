@@ -27,28 +27,13 @@
   </ion-header>
   
   
-  <ion-content>
-    <!-- <ion-list *ngFor="let event of events | async">
-      <ion-item-sliding>
-        <ion-item>
-          {{ event.eventName }}
-        </ion-item>
-        <ion-item-options side="right">
-          <button ion-button icon-only (click)="edit(event)">
-            <ion-icon name="settings"></ion-icon>
-          </button>
-          <button ion-button icon-only color="danger" (click)="delete(event)">
-            <ion-icon name="trash"></ion-icon>
-          </button>
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-list> -->
+  <ion-content padding>
   
     <h4 padding>All Speakers</h4>
   
     <ion-list *ngFor="let speaker of speakers | async">
   
-      <ion-card (click)="openModal()">
+      <ion-card>
         <ion-card-header class="ion-card-header">
           <ion-avatar>
             <img src="{{speaker.imgURL}}"/>
