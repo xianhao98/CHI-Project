@@ -44,6 +44,11 @@ import { SpeakersPage } from '../pages/speakers/speakers';
 import { SpeakersPageModule } from '../pages/speakers/speakers.module';
 import { LandingPageModule } from '../pages/landing/landing.module';
 import { LandingPage } from '../pages/landing/landing';
+import { CommonModule } from '@angular/common';
+import { EventDetailsPage } from '../pages/event-details/event-details';
+import { EventDetailsPageModule } from '../pages/event-details/event-details.module';
+import { EventRegistrationPage } from '../pages/event-registration/event-registration';
+import { EventRegistrationPageModule } from '../pages/event-registration/event-registration.module';
 
 @NgModule({
   declarations: [
@@ -52,6 +57,8 @@ import { LandingPage } from '../pages/landing/landing';
     Tab1,
   ],
   imports: [
+    IonicModule,
+    CommonModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
@@ -62,6 +69,8 @@ import { LandingPage } from '../pages/landing/landing';
     ConferencesPageModule,
     EventCategoriesPageModule,
     EventModalPageModule,
+    EventDetailsPageModule,
+    EventRegistrationPageModule,
     EventsPageModule,
     AllEventsPageModule,
     LandingPageModule,
@@ -84,10 +93,12 @@ import { LandingPage } from '../pages/landing/landing';
     EventCategoriesPage,
     AllEventsPage,
     ConferencesPage,
-    SpeakersPage,
-    SpeakerModalPage,
     MasterclassesPage,
     EventModalPage,
+    EventDetailsPage,
+    EventRegistrationPage,
+    SpeakersPage,
+    SpeakerModalPage,
     AboutUsPage,
     PartnershipsPage,
     EventsPage,

@@ -18,7 +18,7 @@
 
   <ion-list *ngFor="let event of events | async">
 
-    <ion-card (click)="openModal()">
+    <ion-card>
       <ion-card-header class="ion-card-header">
         {{event.eventName}}
       </ion-card-header>

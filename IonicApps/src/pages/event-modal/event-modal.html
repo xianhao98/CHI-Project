@@ -6,8 +6,12 @@
 -->
 <ion-header>
 
+  <!-- This page opens when user
+    clicks Details button in card of
+    AllEventsPage/ConferencesPage/MasterclassesPage -->
+
   <ion-navbar>
-    <ion-title></ion-title>
+    <ion-title>Event Details</ion-title>
     <ion-buttons end>
       <button ion-button (click)="closeModal()">Close</button>
     </ion-buttons>
@@ -19,8 +23,8 @@
 <ion-content padding>
 
   <ion-tabs>
-    <ion-tab tabIcon="people" [root]="tab1">Home</ion-tab>
+    <ion-tab tabIcon="information-circle" [root]="tab1">Details</ion-tab>
+    <ion-tab tabIcon="people" [root]="tab2">Speakers</ion-tab>
   </ion-tabs>
 
-  Event Details
 </ion-content>

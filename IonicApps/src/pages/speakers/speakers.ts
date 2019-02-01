@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, AlertController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController, ModalController, ViewController } from 'ionic-angular';
 import 'firebase/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../login/login';
@@ -34,11 +34,12 @@ export class SpeakersPage {
   speakerCollection: AngularFirestoreCollection<Speaker>;
   speakerDoc: AngularFirestoreDocument<Speaker>;
   speakers: Observable<Speaker[]>;
-  
+
   constructor(
     public db: AngularFirestore,
     public alertCtrl: AlertController,
     private modalCtrl: ModalController,
+    private viewCtrl: ViewController,
     private afAuth: AngularFireAuth,
     public navCtrl: NavController,
     public navParams: NavParams) {
@@ -46,14 +47,15 @@ export class SpeakersPage {
     this.speakerCollection = this.db.collection('Speakers');
     this.speakers = this.speakerCollection.valueChanges();
 
-    this.eventid = navParams.get('eventid');
+    this.eventid = navParams.get('eventID');
+    console.log("Event ID: ", this.eventid);
 
 
     // All speakers
     this.speakerCollection.get().subscribe((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         this.speakerid = doc.id;
-        console.log(this.speakerid);
+        console.log("Speaker ID: ", this.speakerid);
       });
     });
 
@@ -61,6 +63,13 @@ export class SpeakersPage {
     //   .doc(this.eventid)
     //   .collection('speakers')
     //   .get();
+
+    // this.db.collection('events').get().subscribe((querySnapshot) => {
+    //   querySnapshot.forEach((doc) => {
+    //     this.speakerid = doc.id;
+    //     console.log(this.speakerid);
+    //   });
+    // });
 
   }
 
@@ -75,8 +84,8 @@ export class SpeakersPage {
         console.log("No such document!");
       }
     })
-    
-    
+
+
 
     const speakerModal = this.modalCtrl.create(SpeakerModalPage, {
       speakerDoc
@@ -86,4 +95,10 @@ export class SpeakersPage {
   }
 
 
+  closeModal() {
+    this.viewCtrl.dismiss();
+  }
+
+
 }
+
