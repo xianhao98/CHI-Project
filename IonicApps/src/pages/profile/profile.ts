@@ -12,7 +12,7 @@ import { auth } from 'firebase';
 import firebase from 'firebase';
 
 /**
- * Generated class for the EventsListPage page.
+ * Generated class for the Profile page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.

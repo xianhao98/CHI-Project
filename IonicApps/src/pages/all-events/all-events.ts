@@ -14,7 +14,7 @@ import { SpeakersPage } from '../speakers/speakers';
 import { EventRegistrationPage } from '../event-registration/event-registration';
 
 /**
- * Generated class for the EventsListPage page.
+ * Generated class for the All Events page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -59,9 +59,7 @@ export class AllEventsPage {
 
   openModal() {
     // Push the whole page instead of a modal
-    this.navCtrl.push(EventModalPage, {
-      eventid: eventid,
-    });
+    this.navCtrl.push(EventModalPage, {eventid: eventid});
 
     // Modal: displayed as a small window(?) on the webpage
     // const eventModal = this.modalCtrl.create(EventModalPage);

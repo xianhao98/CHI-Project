@@ -18,7 +18,6 @@ export class EventDetailsPage {
   eventid: string;
 
   constructor(
-    private viewCtrl: ViewController, 
     public navCtrl: NavController, 
     public navParams: NavParams) {
       this.eventid = navParams.get('eventID');
@@ -26,7 +25,7 @@ export class EventDetailsPage {
   }
 
   closeModal() {
-    this.viewCtrl.dismiss();
+    this.navCtrl.pop();
   }
 
 }

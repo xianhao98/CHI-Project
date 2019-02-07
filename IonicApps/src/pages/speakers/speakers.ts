@@ -39,7 +39,6 @@ export class SpeakersPage {
     public db: AngularFirestore,
     public alertCtrl: AlertController,
     private modalCtrl: ModalController,
-    private viewCtrl: ViewController,
     private afAuth: AngularFireAuth,
     public navCtrl: NavController,
     public navParams: NavParams) {
@@ -64,12 +63,12 @@ export class SpeakersPage {
     //   .collection('speakers')
     //   .get();
 
-    // this.db.collection('events').get().subscribe((querySnapshot) => {
+    // this.db.collection('events').doc(this.eventid).collection('speakers').get().subscribe((querySnapshot) => {
     //   querySnapshot.forEach((doc) => {
     //     this.speakerid = doc.id;
-    //     console.log(this.speakerid);
-    //   });
-    // });
+    //     console.log("Speaker ID: ", this.speakerid);
+    //   })
+    // })
 
   }
 
@@ -96,7 +95,7 @@ export class SpeakersPage {
 
 
   closeModal() {
-    this.viewCtrl.dismiss();
+    this.navCtrl.pop();
   }
 
 
