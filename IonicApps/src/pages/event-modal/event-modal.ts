@@ -10,6 +10,7 @@ import 'rxjs/add/operator/toPromise';
 import firebase, { firestore } from 'firebase';
 import { HomePage } from '../home/home';
 import { SpeakersPage } from '../speakers/speakers';
+import { EventDetailsPage } from '../event-details/event-details';
 
 /**
  * Generated class for the EventModalPage page.
@@ -38,13 +39,15 @@ export class Tab1 { }
 export class EventModalPage {
 
   tab1: any;
+  tab2: any;
 
   constructor(
     public db: AngularFirestore,
     private viewCtrl: ViewController,
     private navParams: NavParams) {
 
-      this.tab1 = SpeakersPage;
+      this.tab1 = EventDetailsPage;
+      this.tab2 = SpeakersPage;
 
     }
 

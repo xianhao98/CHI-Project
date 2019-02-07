@@ -12,7 +12,7 @@ import { auth } from 'firebase';
 import firebase from 'firebase';
 
 /**
- * Generated class for the EventsListPage page.
+ * Generated class for the Profile page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -32,8 +32,10 @@ export class ProfilePage {
 
   user = {} as User;
 
-  userCollection: AngularFirestoreCollection<User>;
-  userDoc: AngularFirestoreDocument<User>;
+  //userCollection: AngularFirestoreCollection<User>;
+  userCollection: any;
+  userDoc: any;
+  //userDoc: AngularFirestoreDocument<User>;
   users: Observable<User[]>;
   //users: any = [];
 
@@ -48,7 +50,7 @@ export class ProfilePage {
     var cUser = firebase.auth().currentUser;
     
 
-    this.userCollection = this.db.collection('Users');
+    this.userCollection = firebase.firestore().collection('Users');
     
     //this.users = this.userCollection.valueChanges();
     
@@ -68,7 +70,7 @@ export class ProfilePage {
             console.log(doc.id);
             if (cUser.email == doc.data().Email) {
               firebase.firestore().collection('Users').doc(doc.id).get().then(docs => {
-                this.userDoc = this.db.collection('Users').doc(doc.id);
+                this.userDoc = firebase.firestore().collection('Users').doc(doc.id);
                 console.log(docs.data().Username);
                 console.log(this.userDoc);
                 username = docs.data().Username;

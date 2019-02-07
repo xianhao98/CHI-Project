@@ -11,9 +11,10 @@ import firebase, { firestore } from 'firebase';
 import { HomePage } from '../home/home';
 import { EventModalPage } from '../event-modal/event-modal';
 import { SpeakersPage } from '../speakers/speakers';
+import { EventRegistrationPage } from '../event-registration/event-registration';
 
 /**
- * Generated class for the EventsListPage page.
+ * Generated class for the All Events page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -50,19 +51,25 @@ export class AllEventsPage {
     this.eventCollection.get().subscribe((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         eventid = doc.id;
-        console.log(eventid);
+        console.log("Event ID:", eventid);
       });
     });
 
   }
 
   openModal() {
-    this.navCtrl.push(EventModalPage);
+    // Push the whole page instead of a modal
+    this.navCtrl.push(EventModalPage, {eventid: eventid});
+
+    // Modal: displayed as a small window(?) on the webpage
     // const eventModal = this.modalCtrl.create(EventModalPage);
     // console.log("Created a new EventModalPage");
     // eventModal.present();
     // console.log("Presented the new EventModalPage");
   }
 
+  register() {
+    this.navCtrl.push(EventRegistrationPage);
+  }
 
 }

@@ -1,4 +1,24 @@
-.card-background-page {
+page-home {
+
+  .center {
+    text-align: center;
+    vertical-align: center;
+  }
+
+  .card-title-home {
+    @media screen and (orientation: landscape){
+      position: absolute !important;
+      top: 36% !important;
+      font-size: 4.0em !important;
+      width: 100% !important;
+      font-weight: bold !important;
+      color: #ff0000 !important;
+      background-color: initial !important;
+      text-shadow: -5px 3px 4px #000000c2;
+      }
+  }
+
+  .card-background-page {
 
     ion-card {
       position: relative;
@@ -32,17 +52,10 @@
       color: #fff;
     }
   
+  }
+
 }
 
-.card-title-home {
-	@media screen and (orientation: landscape){
-    position: absolute !important;
-		top: 36% !important;
-		font-size: 4.0em !important;
-		width: 100% !important;
-		font-weight: bold !important;
-		color: #ff0000 !important;
-		background-color: initial !important;
-		text-shadow: -5px 3px 4px #000000c2 !important;
-    }
-}
+
+
+

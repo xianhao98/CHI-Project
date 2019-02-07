@@ -44,7 +44,7 @@ export class MasterclassesPage {
     public navParams: NavParams) {
 
     this.eventCollection = this.db.collection('/events', ref =>
-    ref.where('eventType', '==', 'masterclass'));
+    ref.where('eventType', '==', 'Masterclass'));
     this.events = this.eventCollection.valueChanges();
 
 

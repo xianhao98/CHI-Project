@@ -5,93 +5,100 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-      <ion-title>Register</ion-title>
-    </ion-navbar>
-  
-  </ion-header>
-  
-  
-  <ion-content padding>
-  
-    <ion-list>
-      <ion-item>
-        <ion-label stacked>
-          Username
-        </ion-label>
-        <ion-input type="text" [(ngModel)]="user.username"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label stacked>
-          Email
-        </ion-label>
-        <ion-input type="text" [(ngModel)]="user.email"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label stacked>
-          Password
-        </ion-label>
-        <ion-input type="password" [(ngModel)]="user.password"></ion-input>
-      </ion-item>
+  <ion-navbar>
+    <ion-title>Register</ion-title>
+  </ion-navbar>
 
-      <ion-item>
-        <ion-label stacked>
-          Confirm Password
-        </ion-label>
-        <ion-input type="password" [(ngModel)]="user.confirmPassword"></ion-input>
-      </ion-item>
-    
-  
-      <ion-item>
-        <ion-label stacked>
-          First Name
-        </ion-label>
-        <ion-input type="text" [(ngModel)]="user.firstName"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label stacked>
-          Last Name
-        </ion-label>
-        <ion-input type="text" [(ngModel)]="user.lastName"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label stacked>
-          Gender
-        </ion-label>
-        <ion-select #newSelect [(ngModel)]="gender" (ionChange)="onChange(newSelect.text)">
-          <ion-option value="Male">Male</ion-option>
-          <ion-option value="Female">Female</ion-option>
-        </ion-select>
-      </ion-item>
+</ion-header>
 
-      <ion-item>
-        <ion-label stacked>
-          Date of Birth
-        </ion-label>
-        <ion-input placeholder="DD-MM-YYYY" type="text" [(ngModel)]="user.dob"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label stacked>
-          Contact No
-        </ion-label>
-        <ion-input type="text" [(ngModel)]="user.contactNo"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label stacked>
-          Address
-        </ion-label>
-        <ion-input type="text" [(ngModel)]="user.address"></ion-input>
-      </ion-item>
-    </ion-list>
-  
-  
-    <!-- Submit Registration -->
-    <button ion-button block round (click)="register(user)">Register</button>
-  
-  </ion-content>
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>
+        Username
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="user.username"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>
+        Email
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>
+        Password
+      </ion-label>
+      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>
+        Confirm Password
+      </ion-label>
+      <ion-input type="password" [(ngModel)]="user.confirmPassword"></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label stacked>
+        First Name
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="user.firstName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>
+        Last Name
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="user.lastName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>
+        Gender
+      </ion-label>
+      <ion-select #newSelect [(ngModel)]="gender" (ionChange)="onChange(newSelect.text)">
+        <ion-option value="Male">Male</ion-option>
+        <ion-option value="Female">Female</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- <ion-item>
+      <ion-label stacked>
+        Date of Birth
+      </ion-label>
+      <ion-input placeholder="DD-MM-YYYY" type="text" [(ngModel)]="user.dob"></ion-input>
+    </ion-item> -->
+
+    <ion-item>
+      <ion-label stacked>
+        Date
+      </ion-label>
+      <ion-datetime display-format="DD-MM-YYYY" picker-format="DD MM YYYY" [(ngModel)]="user.dob"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>
+        Contact No
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="user.contactNo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>
+        Address
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="user.address"></ion-input>
+    </ion-item>
+  </ion-list>
+
+
+  <!-- Submit Registration -->
+  <button ion-button block round (click)="register(user)">Register</button>
+
+</ion-content>
