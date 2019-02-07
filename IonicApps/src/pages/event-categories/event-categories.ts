@@ -24,7 +24,7 @@ export class EventCategoriesPage {
     public navParams: NavParams) {
   }
 
-  toAllEventsPage() {
+  toAllEventsPage() { 
     this.navCtrl.push(AllEventsPage);
   }
 
