@@ -25,9 +25,21 @@
     </ion-toolbar> -->
   
   </ion-header>
-  
+
   
   <ion-content padding>
-    <p>Sorry! This page is currently unavailable.</p>
+      <ion-list *ngFor = "let p of aboutUs">
+          <h1>{{p.Mheader}}</h1>
+          <p>{{p.Msubdesc}}</p>
+          <ion-card>
+              <ion-card-header>
+                <h2>{{p.header}}</h2>
+              </ion-card-header>
+              <ion-card-content>
+                  <h3>{{p.maindesc}}</h3>
+                  <p>{{p.subdesc}}</p>
+              </ion-card-content>
+          </ion-card>
+        </ion-list>
   </ion-content>
   
