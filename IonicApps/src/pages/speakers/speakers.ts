@@ -56,7 +56,7 @@ export class SpeakersPage {
         this.speakerid = doc.id;
         console.log("Speaker ID: ", this.speakerid);
       });
-    });
+    });           
 
     // this.db.collection('events')
     //   .doc(this.eventid)

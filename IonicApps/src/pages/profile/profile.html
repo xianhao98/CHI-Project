@@ -16,7 +16,7 @@
 <ion-content padding>
 
 
-  <ion-list *ngFor="let u of users">
+  <ion-list *ngFor="let u of users | async">
     <p>
       {{ u.username }}
     </p>
