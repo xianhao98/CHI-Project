@@ -19,9 +19,18 @@
 
 <ion-content padding>
 
-  <p>
-    {{eventName}}
-  </p>
+  Details of the event here
+
+  <ion-list *ngFor="let event of events | async">
+    <ion-card>
+      <ion-card-header>
+        {{event.eventName}}
+      </ion-card-header>>
+      <ion-card-content>
+        {{eventName}}
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
   
 
 </ion-content>

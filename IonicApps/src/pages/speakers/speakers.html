@@ -30,34 +30,32 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
-  <h4 padding>All Speakers</h4>
+  <h4 padding>Speakers</h4>
 
-  <ion-list *ngFor="let speaker of speakers | async">
-
+  <ion-list>
     <ion-card>
-      <ion-card-header class="ion-card-header">
-        <ion-avatar>
+      <ion-item class="ion-card-header">
+        <ion-avatar item-start>
           <img src="{{speaker.imgURL}}" />
         </ion-avatar>
-        {{speaker.speakerName}}
-      </ion-card-header>
 
-      <ion-card-content>
-        Position:
-        <p>
-          {{speaker.speakerPos}}
+        <h2 class="whitespace">
+          {{speaker.speakerTitle}} {{speaker.speakerName}}
+        </h2>
+        <p class="whitespace">
+          {{speaker.speakerOrganisation}}
+          {{speaker.speakerPosition}}
         </p>
 
-        Organisation:
-        <p>
-          {{speaker.speakerOrg}}
-        </p>
-        <button ion-button block color="primary" (click)="openModal()">Read More</button>
-      </ion-card-content>
+        <button ion-button clear color="secondary" (click)="openModal()" item-end>
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+      </ion-item>
+
+
     </ion-card>
-
   </ion-list>
 
 </ion-content>

@@ -1,8 +1,9 @@
 export interface Speaker {
 
-    imgUrl: string,
+    imgURL: string,
+    speakerTitle: string,
     speakerName: string,
-    speakerPos: string,
-    speakerOrg: string,
+    speakerPosition: string,
+    speakerOrganisation: string,
 
 }

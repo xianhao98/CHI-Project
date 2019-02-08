@@ -51,7 +51,7 @@ export class AllEventsPage {
     this.eventCollection.get().subscribe((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         eventid = doc.id;
-        console.log("Event ID:", eventid);
+        console.log("All Event ID:", eventid);
       });
     });
 
