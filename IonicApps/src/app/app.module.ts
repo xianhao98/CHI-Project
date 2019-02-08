@@ -49,6 +49,10 @@ import { EventDetailsPage } from '../pages/event-details/event-details';
 import { EventDetailsPageModule } from '../pages/event-details/event-details.module';
 import { EventRegistrationPage } from '../pages/event-registration/event-registration';
 import { EventRegistrationPageModule } from '../pages/event-registration/event-registration.module';
+import { AdminPageModule } from '../pages/admin/admin.module';
+import { AdminPage } from '../pages/admin/admin';
+import { AdminEventsPage } from '../pages/admin-events/admin-events';
+import { AdminEventsPageModule } from '../pages/admin-events/admin-events.module';
 
 @NgModule({
   declarations: [
@@ -65,6 +69,8 @@ import { EventRegistrationPageModule } from '../pages/event-registration/event-r
     AngularFirestoreModule.enablePersistence(),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    AdminPageModule,
+    AdminEventsPageModule,
     AboutUsPageModule,
     ConferencesPageModule,
     EventCategoriesPageModule,
@@ -86,6 +92,8 @@ import { EventRegistrationPageModule } from '../pages/event-registration/event-r
   entryComponents: [
     MyApp,
     HomePage,
+    AdminPage,
+    AdminEventsPage,
     ProfilePage,
     LandingPage,
     LoginPage,

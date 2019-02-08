@@ -24,7 +24,6 @@
       <img src="{{event.imgURL}}" />
 
       <ion-card-header>
-
         {{event.eventType}}
 
         <ion-card-title class="whitespace">
@@ -42,7 +41,7 @@
         <p>
           {{event.eventDateStart}} - {{event.eventDateEnd}}
         </p>
-        
+
       </ion-card-content>
 
       <div>
@@ -50,7 +49,7 @@
           <!-- See event details -->
           <button ion-button clear color="secondary" (click)="openModal()">See Details</button>
           <!-- Register for Event -->
-          <button ion-button color="primary" (click)="register()">Register</button>
+          <button ion-button color="primary" (click)="register(eventid)">Register</button>
         </ion-buttons>
       </div>
 

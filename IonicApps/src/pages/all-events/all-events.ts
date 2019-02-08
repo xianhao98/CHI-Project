@@ -29,6 +29,8 @@ var eventid: string;
 })
 export class AllEventsPage {
 
+  clicked = false;
+
   event = {} as Event;
 
   eventCollection: AngularFirestoreCollection<Event>;
@@ -58,6 +60,7 @@ export class AllEventsPage {
   }
 
   openModal() {
+    this.clicked = true;
     // Push the whole page instead of a modal
     this.navCtrl.push(EventModalPage, {eventid: eventid});
 
@@ -68,8 +71,9 @@ export class AllEventsPage {
     // console.log("Presented the new EventModalPage");
   }
 
-  register() {
-    this.navCtrl.push(EventRegistrationPage);
+  register(v) {
+    console.log(v);
+    this.navCtrl.push(EventRegistrationPage, {value:v});
   }
 
 }

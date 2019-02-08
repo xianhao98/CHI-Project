@@ -11,6 +11,7 @@ import { EventCategoriesPage } from '../pages/event-categories/event-categories'
 import { AboutUsPage } from '../pages/about-us/about-us';
 import { PartnershipsPage } from '../pages/partnerships/partnerships';
 import { LandingPage } from '../pages/landing/landing';
+import { AdminPage } from '../pages/admin/admin';
 
 @Component({
   templateUrl: 'app.html'
@@ -35,6 +36,7 @@ export class MyApp {
     // IF LOGGED IN / LOGGED OUT
     this.pages = [
       { title: 'Home', component: HomePage },
+      { title: 'Admin', component: AdminPage },
       { title: 'Profile', component: ProfilePage },
       { title: 'About Us', component: AboutUsPage },
       { title: 'Partnerships & Collaboration', component: PartnershipsPage },
