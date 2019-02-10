@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { IonicPage, NavController, NavParams, ToastController, AlertController, ModalController } from 'ionic-angular';
+import { User } from '../../models/user';
 import 'firebase/firestore';
-import { AlertController, IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { LoginPage } from '../login/login';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs-compat/Observable';
 import 'rxjs/add/operator/toPromise';
-import { User } from '../../models/user';
-import { auth } from 'firebase';
+import firebase, { firestore } from 'firebase';
+import { HomePage } from '../home/home';
+import { EventModalPage } from '../event-modal/event-modal';
+import 'rxjs/Rx';
 
 /**
  * Generated class for the EventsListPage page.
@@ -46,18 +50,16 @@ export class ProfilePage {
   }
 
   showProfile() {
-    // this.afAuth.authState.subscribe(auth => {
-    //   this.db.doc(`user/${auth.uid}`).valueChanges;
-    // })
+    var docRef = this.db.collection("Users").doc(userid).snapshotChanges();
 
-    // var cityRef = this.db.collection('Users').doc(`user/${auth.uid}`);
-    // var getDoc = cityRef.get().subscribe(doc => {
-    //     if (!doc.exists) {
-    //       console.log('No such document!');
-    //     } else {
-    //       console.log('Document data:', doc.data());
-    //     }
-    //   })
+    docRef.subscribe(function (doc) {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    })
   }
 
 }
