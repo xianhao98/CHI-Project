@@ -5,21 +5,24 @@ import 'firebase/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../login/login';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
+import 'firebase/firestore';
+import { AlertController, IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs-compat/Observable';
 import 'rxjs/add/operator/toPromise';
-import firebase, { firestore } from 'firebase';
-import { HomePage } from '../home/home';
-import { EventModalPage } from '../event-modal/event-modal';
-import 'rxjs/Rx';
+import { first } from 'rxjs/operators';
+import { User } from '../../models/user';
+import { auth } from 'firebase';
+import firebase from 'firebase';
 
 /**
- * Generated class for the EventsListPage page.
+ * Generated class for the Profile page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
-var userid: string;
+ var username: string;
 
 @IonicPage()
 @Component({
@@ -29,12 +32,16 @@ var userid: string;
 
 export class ProfilePage {
 
-  userCollection: AngularFirestoreCollection<User>;
-  userDoc: AngularFirestoreDocument<User>;
-  users: Observable<User[]>;
-  profileData: Observable<User>;
+  userid: any;
 
-  user: User;
+  user = {} as User;
+
+  //userCollection: AngularFirestoreCollection<User>;
+  userCollection: any;
+  userDoc: any;
+  //userDoc: AngularFirestoreDocument<User>;
+  users: Observable<User[]>;
+  //users: any = [];
 
   constructor(
     public db: AngularFirestore,
@@ -44,22 +51,42 @@ export class ProfilePage {
     public navCtrl: NavController,
     public navParams: NavParams) {
 
-    // this.userCollection = this.db.collection('Users');
-    // this.users = this.userCollection.doc(`user/${auth.uid}`).valueChanges();
-    this.showProfile();
+    var cUser = firebase.auth().currentUser;
+    
+
+    this.userCollection = firebase.firestore().collection('Users');
+    
+    //this.users = this.userCollection.valueChanges();
+    
+    this.getCurrentUser();
+
   }
 
-  showProfile() {
-    var docRef = this.db.collection("Users").doc(userid).snapshotChanges();
 
-    docRef.subscribe(function (doc) {
-      if (doc.exists) {
-        console.log("Document data:", doc.data());
+  getCurrentUser() {
+    firebase.auth().onAuthStateChanged(function (cUser) {
+      if (cUser) {
+        // User is signed in.
+        console.log(cUser);
+        console.log(firebase.firestore().collection('Users'));
+        firebase.firestore().collection('Users').get().then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            console.log(doc.id);
+            if (cUser.email == doc.data().Email) {
+              firebase.firestore().collection('Users').doc(doc.id).get().then(docs => {
+                this.userDoc = firebase.firestore().collection('Users').doc(doc.id);
+                console.log(docs.data().Username);
+                console.log(this.userDoc);
+                username = docs.data().Username;
+              })
+            }
+          });
+        });
       } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
+        // No user is signed in.
       }
-    })
+    });
   }
+
 
 }

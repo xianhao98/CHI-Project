@@ -1,16 +1,19 @@
 <!--
-  Generated template for the EventsListPage page.
+  Generated template for the Speakers page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 <ion-header>
 
-    <ion-navbar>
-      <ion-title>Speakers</ion-title>
-    </ion-navbar>
-  
-    <!-- <ion-toolbar>
+  <!-- <ion-navbar>
+    <ion-title>Speakers</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="closeModal()">Close</button>
+    </ion-buttons>
+  </ion-navbar> -->
+
+  <!-- <ion-toolbar>
       <ion-segment>
         <ion-segment-button>
           Conferences
@@ -23,54 +26,36 @@
         </ion-segment-button>
       </ion-segment>
     </ion-toolbar> -->
-  
-  </ion-header>
-  
-  
-  <ion-content>
-    <!-- <ion-list *ngFor="let event of events | async">
-      <ion-item-sliding>
-        <ion-item>
-          {{ event.eventName }}
-        </ion-item>
-        <ion-item-options side="right">
-          <button ion-button icon-only (click)="edit(event)">
-            <ion-icon name="settings"></ion-icon>
-          </button>
-          <button ion-button icon-only color="danger" (click)="delete(event)">
-            <ion-icon name="trash"></ion-icon>
-          </button>
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-list> -->
-  
-    <h4 padding>All Speakers</h4>
-  
-    <ion-list *ngFor="let speaker of speakers | async">
-  
-      <ion-card (click)="openModal()">
-        <ion-card-header class="ion-card-header">
-          <ion-avatar>
-            <img src="{{speaker.imgURL}}"/>
-          </ion-avatar>
-          {{speaker.speakerName}}
-        </ion-card-header>
-        
-        <ion-card-content>
-          Position:
-          <p>
-            {{speaker.speakerPos}}
-          </p>
-          
-          Organisation:
-          <p>
-            {{speaker.speakerOrg}}
-          </p>
-          <button ion-button block color="primary" (click)="openModal()">Read More</button>
-        </ion-card-content>
-      </ion-card>
-  
-    </ion-list>
-    
-  </ion-content>
-  
+
+</ion-header>
+
+
+<ion-content>
+
+  <h4 padding>Speakers</h4>
+
+  <ion-list *ngFor="let speaker of speakers">
+    <ion-card>
+      <ion-item class="ion-card-header">
+        <ion-avatar item-start>
+          <img src="{{speaker.imgURL}}" />
+        </ion-avatar>
+
+        <h2 class="whitespace">
+          {{speaker.speakerTitle}} {{speaker.speakerName}}
+        </h2>
+        <p class="whitespace">
+          {{speaker.speakerOrganisation}}
+          {{speaker.speakerPosition}}
+        </p>
+
+        <button ion-button clear color="secondary" (click)="openModal()" item-end>
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+      </ion-item>
+
+
+    </ion-card>
+  </ion-list>
+
+</ion-content>

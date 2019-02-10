@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AdminEventsPage } from '../admin-events/admin-events';
 
 /**
- * Generated class for the NewProfilePage page.
+ * Generated class for the AdminPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,16 +11,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-new-profile',
-  templateUrl: 'new-profile.html',
+  selector: 'page-admin',
+  templateUrl: 'admin.html',
 })
-export class NewProfilePage {
+export class AdminPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad NewProfilePage');
+  toAdminEventsPage() {
+    this.navCtrl.push(AdminEventsPage);
   }
 
 }

@@ -10,21 +10,18 @@
     "source": "functions"
   },
   "hosting": {
-	"cleanUrls": true,
-	
-    "public": "public",
-	
+    "public": "www",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
-	
-	"rewrites": [ {
-      "source": "**",
-      "destination": "index.html"
-    } ]
-	
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
   },
   "storage": {
     "rules": "storage.rules"

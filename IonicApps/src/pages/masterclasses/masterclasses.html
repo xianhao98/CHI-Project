@@ -12,37 +12,36 @@
 
 </ion-header>
 
+<ion-content padding>
 
-<ion-content>
+  <h4 padding>Masterclasses</h4>
 
-    <h4 padding>Conferences</h4>
+  <ion-list *ngFor="let event of events | async">
 
-    <ion-list *ngFor="let event of events | async">
-  
-      <ion-card (click)="openModal()">
-        <ion-card-header class="ion-card-header">
-          {{event.eventName}}
-        </ion-card-header>
-        <img src="{{event.imgURL}}"/>
-        <ion-card-content>
-          Start Date:
-          <p>
-            {{event.eventDateStart}}
-          </p>
-          
-          End Date:
-          <p>
-            {{event.eventDateEnd}}
-          </p>
-  
-          Venue:
-          <p>
-            {{event.eventVenue}}
-          </p>
-          <button ion-button block color="primary" (click)="openModal()" >Read More</button>
-        </ion-card-content>
-      </ion-card>
-  
-    </ion-list>
+    <ion-card>
+      <ion-card-header class="ion-card-header">
+        {{event.eventName}}
+      </ion-card-header>
+      <img src="{{event.imgURL}}"/>
+      <ion-card-content>
+        Start Date:
+        <p>
+          {{event.eventDateStart}}
+        </p>
+        
+        End Date:
+        <p>
+          {{event.eventDateEnd}}
+        </p>
+
+        Venue:
+        <p>
+          {{event.eventVenue}}
+        </p>
+        <button ion-button block color="primary" (click)="openModal()" >Read More</button>
+      </ion-card-content>
+    </ion-card>
+
+  </ion-list>
 
 </ion-content>

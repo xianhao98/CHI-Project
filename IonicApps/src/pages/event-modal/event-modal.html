@@ -6,8 +6,12 @@
 -->
 <ion-header>
 
-  <ion-navbar *ngFor="let event of events | async">
-    <ion-title>{{event.eventName}}</ion-title>
+  <!-- This page opens when user
+    clicks Details button in card of
+    AllEventsPage/ConferencesPage/MasterclassesPage -->
+
+  <ion-navbar>
+    <ion-title>Event Details</ion-title>
     <ion-buttons end>
       <button ion-button (click)="closeModal()">Close</button>
     </ion-buttons>
@@ -17,7 +21,10 @@
 
 
 <ion-content padding>
-  <p>
-    {{event.eventDateStart}}
-  </p>
+
+  <ion-tabs>
+    <ion-tab tabIcon="information-circle" [root]="tab1">Details</ion-tab>
+    <ion-tab tabIcon="people" [root]="tab2">Speakers</ion-tab>
+  </ion-tabs>
+
 </ion-content>

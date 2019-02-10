@@ -3,8 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { ConferencesPage } from '../conferences/conferences';
 import { MasterclassesPage } from '../masterclasses/masterclasses';
-import { LeadershipPage } from '../leadership/leadership';
-import { EventsListPage } from '../events-list/events-list';
+import { AllEventsPage } from '../all-events/all-events';
 
 /**
  * Generated class for the EventCategoriesPage page.
@@ -25,8 +24,8 @@ export class EventCategoriesPage {
     public navParams: NavParams) {
   }
 
-  toEventsListPage() {
-    this.navCtrl.push(EventsListPage);
+  toAllEventsPage() { 
+    this.navCtrl.push(AllEventsPage);
   }
 
   toConferencesPage() {
@@ -35,10 +34,6 @@ export class EventCategoriesPage {
 
   toMasterclassesPage() {
     this.navCtrl.push(MasterclassesPage);
-  }
-
-  toLeadershipPage() {
-    this.navCtrl.push(LeadershipPage);
   }
 
 }

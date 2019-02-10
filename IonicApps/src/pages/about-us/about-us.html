@@ -1,5 +1,5 @@
 <!--
-  Generated template for the EventsListPage page.
+  Generated template for the About Us page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -25,9 +25,21 @@
     </ion-toolbar> -->
   
   </ion-header>
-  
+
   
   <ion-content padding>
-    <p>This page is unavailable at the moment.</p>
+      <ion-list *ngFor = "let p of aboutUs">
+          <h1>{{p.Mheader}}</h1>
+          <p>{{p.Msubdesc}}</p>
+          <ion-card>
+              <ion-card-header>
+                <h2>{{p.header}}</h2>
+              </ion-card-header>
+              <ion-card-content>
+                  <h3>{{p.maindesc}}</h3>
+                  <p>{{p.subdesc}}</p>
+              </ion-card-content>
+          </ion-card>
+        </ion-list>
   </ion-content>
   

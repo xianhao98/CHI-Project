@@ -17,7 +17,7 @@ import { Observable } from 'rxjs-compat/Observable';
   selector: 'page-events',
   templateUrl: 'events.html',
 })
-export default class EventsPage {
+export class EventsPage {
 
   email: string;
   eventID: any;

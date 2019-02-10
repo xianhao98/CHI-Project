@@ -9,6 +9,8 @@ import { Observable } from 'rxjs-compat/Observable';
 import 'rxjs/add/operator/toPromise';
 import firebase, { firestore } from 'firebase';
 import { HomePage } from '../home/home';
+import { SpeakersPage } from '../speakers/speakers';
+import { EventDetailsPage } from '../event-details/event-details';
 
 /**
  * Generated class for the EventModalPage page.
@@ -17,45 +19,37 @@ import { HomePage } from '../home/home';
  * Ionic pages and navigation.
  */
 
-var eventDetailId: string;
-
 @IonicPage()
+
+@Component({
+  template: `
+  <ion-header>
+    <ion-navbar>
+      <ion-title>Heart</ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content>Tab 1</ion-content>`
+})
+export class Tab1 { }
+
 @Component({
   selector: 'page-event-modal',
   templateUrl: 'event-modal.html',
 })
 export class EventModalPage {
 
-  event = {} as Event;
-
-  eventCollection: AngularFirestoreCollection<Event>;
-  eventDoc: AngularFirestoreDocument<Event>;
-  events: Observable<Event[]>;
+  tab1: any;
+  tab2: any;
 
   constructor(
     public db: AngularFirestore,
     private viewCtrl: ViewController,
     private navParams: NavParams) {
 
-    this.eventCollection = this.db.collection('events');
-    this.events = this.eventCollection.valueChanges();
-    
-    this.db.collection("events").get().subscribe((querySnapshot) => {
-      querySnapshot.forEach(function(doc) {
-        console.log(doc.id, " => ", doc.data());
-      });
-    });
+      this.tab1 = EventDetailsPage;
+      this.tab2 = SpeakersPage;
 
-    console.log(eventDetailId);
-    this.db.collection("events").doc(eventDetailId).get().subscribe(function(doc) {
-    if (doc.exists) {
-        console.log("Document data:", doc.data());
-    } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
     }
-  })
-}
 
 
     closeModal() {

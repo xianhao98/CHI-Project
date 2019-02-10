@@ -11,14 +11,14 @@ import firebase, { firestore } from 'firebase';
 import { HomePage } from '../home/home';
 import { EventModalPage } from '../event-modal/event-modal';
 
-var eventid: string;
-
 /**
  * Generated class for the MasterclassesPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+
+var eventid: string;
 
 @IonicPage()
 @Component({
@@ -44,7 +44,7 @@ export class MasterclassesPage {
     public navParams: NavParams) {
 
     this.eventCollection = this.db.collection('/events', ref =>
-    ref.where('eventType', '==', 'masterclass'));
+    ref.where('eventType', '==', 'Masterclass'));
     this.events = this.eventCollection.valueChanges();
 
 

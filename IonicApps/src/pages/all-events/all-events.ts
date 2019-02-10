@@ -10,9 +10,11 @@ import 'rxjs/add/operator/toPromise';
 import firebase, { firestore } from 'firebase';
 import { HomePage } from '../home/home';
 import { EventModalPage } from '../event-modal/event-modal';
+import { SpeakersPage } from '../speakers/speakers';
+import { EventRegistrationPage } from '../event-registration/event-registration';
 
 /**
- * Generated class for the EventsListPage page.
+ * Generated class for the All Events page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -22,19 +24,18 @@ var eventid: string;
 
 @IonicPage()
 @Component({
-  selector: 'page-events-list',
-  templateUrl: 'events-list.html',
+  selector: 'page-all-events',
+  templateUrl: 'all-events.html',
 })
+export class AllEventsPage {
 
-export class EventsListPage {
+  clicked = false;
 
   event = {} as Event;
 
   eventCollection: AngularFirestoreCollection<Event>;
-  eventDoc: AngularFirestoreDocument<Event>;
+  //eventDoc: AngularFirestoreDocument<Event>;
   events: Observable<Event[]>;
-
-  model: Event;
 
   constructor(
     public db: AngularFirestore,
@@ -52,29 +53,27 @@ export class EventsListPage {
     this.eventCollection.get().subscribe((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         eventid = doc.id;
-        console.log(eventid);
+        console.log("All Event ID:", eventid);
       });
     });
 
   }
 
   openModal() {
-    console.log(eventid);
-    this.db.collection("events").doc(eventid).get().subscribe((doc) => {
-      if (doc.exists) {
-        console.log("Document data:", doc.data());
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
-    })
+    this.clicked = true;
+    // Push the whole page instead of a modal
+    this.navCtrl.push(EventModalPage, {eventid: eventid});
 
-    const eventModal = this.modalCtrl.create(EventModalPage, {
-      eventDoc
-        : this.eventDoc
-    });
-    eventModal.present();
+    // Modal: displayed as a small window(?) on the webpage
+    // const eventModal = this.modalCtrl.create(EventModalPage);
+    // console.log("Created a new EventModalPage");
+    // eventModal.present();
+    // console.log("Presented the new EventModalPage");
   }
 
+  register(v) {
+    console.log(v);
+    this.navCtrl.push(EventRegistrationPage, {value:v});
+  }
 
 }

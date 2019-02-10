@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, AlertController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController, ModalController, ViewController } from 'ionic-angular';
 import 'firebase/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../login/login';
@@ -18,7 +18,6 @@ import { SpeakerModalPage } from '../speaker-modal/speaker-modal';
  * Ionic pages and navigation.
  */
 
-var speakerid: string;
 
 @IonicPage()
 @Component({
@@ -27,12 +26,11 @@ var speakerid: string;
 })
 export class SpeakersPage {
 
+  speakerid: string;
+  eventid: string;
+
   speaker = {} as Speaker;
 
-  speakerCollection: AngularFirestoreCollection<Speaker>;
-  speakerDoc: AngularFirestoreDocument<Speaker>;
-  speakers: Observable<Speaker[]>;
-  
   constructor(
     public db: AngularFirestore,
     public alertCtrl: AlertController,
@@ -41,37 +39,53 @@ export class SpeakersPage {
     public navCtrl: NavController,
     public navParams: NavParams) {
 
-    this.speakerCollection = this.db.collection('Speakers');
-    this.speakers = this.speakerCollection.valueChanges();
+    
+    // All speakers
+    // this.speakerCollection.get().subscribe((querySnapshot) => {
+    //   querySnapshot.forEach((doc) => {
+    //     this.speakerid = doc.id;
+    //     console.log("Speaker ID: ", this.speakerid);
+    //   });
+    // });
 
+    // this.speaker.speakerName = this.navParams.get('speakerName');
+    // console.log(this.speaker.speakerName);
+    this.eventid = this.navParams.get('eventid');
+    console.log('Passed eventid: ', this.eventid);
 
-
-    this.speakerCollection.get().subscribe((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        speakerid = doc.id;
-        console.log(speakerid);
-      });
-    });
+    this.getDetails();
 
   }
 
-  openModal() {
-    console.log(speakerid);
-    this.db.collection("Speakers").doc(speakerid).get().subscribe((doc) => {
-      if (doc.exists) {
-        console.log("Document data:", doc.data());
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
+  getDetails() {
+    this.db.collection("events").get().subscribe((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.db.collection("events").doc(doc.id).collection("speakers").get().subscribe((querySnapshot) => {
+          querySnapshot.forEach((docs) => {
+            if (this.eventid == doc.id) {
+              console.log(docs.data());
+              this.speaker.imgURL = docs.data().imgURL;
+              this.speaker.speakerTitle = docs.data().speakerTitle;
+              this.speaker.speakerName = docs.data().speakerName;
+              this.speaker.speakerOrganisation = docs.data().speakerOrganisation;
+              this.speaker.speakerPosition = docs.data().speakerPosition;
+            }
+          })
+        })
+      })
     })
+  }
 
-    const speakerModal = this.modalCtrl.create(SpeakerModalPage, {
-      speakerDoc
-        : this.speakerDoc
-    });
-    speakerModal.present();
+  openModal() {
+    // Speaker Profile
+    this.navCtrl.push(SpeakerModalPage);
+  }
+
+
+  closeModal() {
+    this.navCtrl.pop();
   }
 
 
 }
+
