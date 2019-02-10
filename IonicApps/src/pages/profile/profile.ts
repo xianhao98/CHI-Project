@@ -7,11 +7,9 @@ import { LoginPage } from '../login/login';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import 'firebase/firestore';
-import { AlertController, IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs-compat/Observable';
 import 'rxjs/add/operator/toPromise';
 import { first } from 'rxjs/operators';
-import { User } from '../../models/user';
 import { auth } from 'firebase';
 import firebase from 'firebase';
 
