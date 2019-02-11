@@ -50,7 +50,7 @@ export class SpeakersPage {
 
     // this.speaker.speakerName = this.navParams.get('speakerName');
     // console.log(this.speaker.speakerName);
-    this.eventid = this.navParams.get('eventid');
+    this.eventid = this.navParams.get('eventID');
     console.log('Passed eventid: ', this.eventid);
 
     this.getDetails();

@@ -47,9 +47,9 @@
       <div>
         <ion-buttons padding end>
           <!-- See event details -->
-          <button ion-button clear color="secondary" (click)="openModal()">See Details</button>
+          <button ion-button clear color="secondary" (click)="openModal(event.id)">See Details</button>
           <!-- Register for Event -->
-          <button ion-button color="primary" (click)="register(eventid)">Register</button>
+          <button ion-button color="primary" (click)="register()">Register</button>
         </ion-buttons>
       </div>
 

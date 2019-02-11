@@ -16,22 +16,35 @@
 <ion-content padding>
 
 
-  <ion-list *ngFor="let u of users | async">
-    <p>
-      {{ u.username }}
-    </p>
+  <ion-list *ngFor="let u of profile">
+    <ion-card>
+        <ion-card-header>
+          <ion-avatar>
+            <img src="{{u.userimg}}"/>
+          </ion-avatar>
+        </ion-card-header>
+          {{u.username}}
+        <ion-card-content>
+          <p>
+            {{u.firstname}} {{u.lastname}}
+          </p>
+          <p>
+            {{u.dob}}
+          </p>
+          <p>
+            {{u.gender}}
+          </p>
+          <p>
+            {{u.email}}
+          </p>
+          <p>
+            {{u.address}}
+          </p>
+          <p>
+            {{u.cn}}
+          </p>
+        </ion-card-content>
+      </ion-card>
   </ion-list>
-  <!-- <ion-card>
-          <ion-card-header>
-            <ion-avatar>
-              <img src="https://firebasestorage.googleapis.com/v0/b/chi-project-database.appspot.com/o/Userpic%2FdefaultProfile.jpg?alt=media&token=431fb1f6-9a47-4530-aae2-076e5a5230a4"/>
-            </ion-avatar>
-          </ion-card-header>
-          
-          <ion-card-content>
-            <p>
-              
-            </p>
-          </ion-card-content>
-        </ion-card> -->
+    
 </ion-content>

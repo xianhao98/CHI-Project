@@ -44,7 +44,7 @@ export class AboutUsPage implements OnInit{
       new AboutUs(" "," ",data[7],data[8],data[9]),
       new AboutUs(" "," ",data[12],data[13],data[14])
     ];
-  }, 800);
+  }, 2100);
   }
   getdata(){
     console.log("in getdata method");
