@@ -46,6 +46,10 @@ export class AddEventPage {
       this.event.eventVenue = this.navParams.get('eventVenue');
       this.event.eventDateStart = this.navParams.get('eventDateStart');
       this.event.eventDateEnd = this.navParams.get('eventDateEnd');
+      this.event.eventTimeStart = this.navParams.get('eventTimeStart');
+      this.event.eventTimeEnd = this.navParams.get('eventTimeEnd');
+      this.event.imgURL = "https://firebasestorage.googleapis.com/v0/b/chi-project-database.appspot.com/o/conferences%2Fheathcare3.jpg?alt=media&token=1fe12655-e91b-4faa-a143-b2644f292b4f";
+      this.event.slotsTotal = this.navParams.get('slotsTotal');
   }
 
   async addEvent(event: Event) {
@@ -68,7 +72,6 @@ export class AddEventPage {
       eventDateEnd: this.event.eventDateEnd,
       eventTimeStart: this.event.eventTimeStart,
       eventTimeEnd: this.event.eventTimeEnd,
-      eventDuration: this.event.eventDuration,
 
       imgURL: this.event.imgURL,
 
@@ -78,39 +81,15 @@ export class AddEventPage {
     console.log(event);
   }
 
-  takePhoto() {
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-    
-    this.camera.getPicture(options).then((imageData) => {
-     // imageData is either a base64 encoded string or a file URL
-     // If it's base64 (DATA_URL):
-     let base64Image = 'data:image/jpeg;base64,' + imageData;
-    }, (err) => {
-     console.log(err);
-    });
+  minus() {
+    this.event.slotsTotal = this.event.slotsTotal  - 1;
   }
 
-  uploadPhoto() {
-    const options: CameraOptions = {
-      quality: 80,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-      saveToPhotoAlbum: false,
-    }
-
-    this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URL
-      // If it's base64:
-      let base64Image = 'data:image/jpeg;base64,' + imageData;
-    }, (err) => {
-     console.log(err);
-    })
+  plus() {
+    this.event.slotsTotal = this.event.slotsTotal  + 1;
   }
+
+  
 
   // Custom userid that iterates
   stringSlice(id) {
@@ -119,5 +98,39 @@ export class AddEventPage {
     this.eventid = "e" + slice;
     console.log(this.eventid);
   }
+
+  // takePhoto() {
+  //   const options: CameraOptions = {
+  //     quality: 100,
+  //     destinationType: this.camera.DestinationType.FILE_URI,
+  //     encodingType: this.camera.EncodingType.JPEG,
+  //     mediaType: this.camera.MediaType.PICTURE
+  //   }
+    
+  //   this.camera.getPicture(options).then((imageData) => {
+  //    // imageData is either a base64 encoded string or a file URL
+  //    // If it's base64 (DATA_URL):
+  //    let base64Image = 'data:image/jpeg;base64,' + imageData;
+  //   }, (err) => {
+  //    console.log(err);
+  //   });
+  // }
+
+  // uploadPhoto() {
+  //   const options: CameraOptions = {
+  //     quality: 80,
+  //     destinationType: this.camera.DestinationType.DATA_URL,
+  //     sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+  //     saveToPhotoAlbum: false,
+  //   }
+
+  //   this.camera.getPicture(options).then((imageData) => {
+  //     // imageData is either a base64 encoded string or a file URL
+  //     // If it's base64:
+  //     let base64Image = 'data:image/jpeg;base64,' + imageData;
+  //   }, (err) => {
+  //    console.log(err);
+  //   })
+  // }
 
 }

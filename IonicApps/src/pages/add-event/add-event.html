@@ -50,10 +50,31 @@
     <ion-datetime display-format="DD-MM-YYYY" picker-format="DD MM YYYY" [(ngModel)]="event.eventDateEnd"></ion-datetime>
   </ion-item>
 
+  <ion-item>
+    <ion-label stacked>Start Time</ion-label>
+    <ion-datetime displayFormat="h:mm A" pickerFormat="h:mm A" [(ngModel)]="event.eventTimeStart"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>End Time</ion-label>
+    <ion-datetime displayFormat="h:mm A" pickerFormat="h:mm A" [(ngModel)]="event.eventTimeEnd"></ion-datetime>
+  </ion-item>
+
   <!-- Image -->
-  <button ion-button (click)="takePhoto()" block color="primary">Take a Photo</button>
-  <button ion-button (click)="uploadPhoto()" block color="primary">Upload a Photo</button>
   <p><img src="{{event.imgURL}}"></p>
+
+  <ion-item>
+    <ion-label stacked>Max Capacity</ion-label>
+    <ion-input type="number" [(ngModel)]="event.slotsTotal"></ion-input>
+    <ion-buttons item-end>
+      <button ion-button (click)="minus()">
+        <ion-icon name="remove"></ion-icon>
+      </button>
+      <button ion-button (click)="plus()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-buttons>
+  </ion-item>
 
 
   <button ion-button block (click)="addEvent(event)">Add Event</button>

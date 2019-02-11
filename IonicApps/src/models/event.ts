@@ -1,3 +1,5 @@
+import { DateTime } from "ionic-angular";
+
 export interface Event {
 
     id?: number,
@@ -6,15 +8,15 @@ export interface Event {
     eventDesc?: string,
     eventVenue?: string,
 
-    eventDateStart?: string,
-    eventDateEnd?: string,
-    eventTimeStart?: string,
-    eventTimeEnd?: string,
+    eventDateStart?: DateTime,
+    eventDateEnd?: DateTime,
+    eventTimeStart?: DateTime,
+    eventTimeEnd?: DateTime,
     eventDuration?: number,
 
     imgURL?: string,
 
-    slotsTotal?: string,
-    slotsTaken?: string,
+    slotsTotal?: number,
+    slotsTaken?: number,
     
 }
