@@ -39,7 +39,7 @@ export class SpeakersPage {
     public navCtrl: NavController,
     public navParams: NavParams) {
 
-    
+
     // All speakers
     // this.speakerCollection.get().subscribe((querySnapshot) => {
     //   querySnapshot.forEach((doc) => {
@@ -50,7 +50,7 @@ export class SpeakersPage {
 
     // this.speaker.speakerName = this.navParams.get('speakerName');
     // console.log(this.speaker.speakerName);
-    this.eventid = this.navParams.get('eventID');
+    this.eventid = this.navParams.get('eventid');
     console.log('Passed eventid: ', this.eventid);
 
     this.getDetails();
@@ -62,14 +62,12 @@ export class SpeakersPage {
       querySnapshot.forEach((doc) => {
         this.db.collection("events").doc(doc.id).collection("speakers").get().subscribe((querySnapshot) => {
           querySnapshot.forEach((docs) => {
-            if (this.eventid == doc.id) {
-              console.log(docs.data());
-              this.speaker.imgURL = docs.data().imgURL;
-              this.speaker.speakerTitle = docs.data().speakerTitle;
-              this.speaker.speakerName = docs.data().speakerName;
-              this.speaker.speakerOrganisation = docs.data().speakerOrganisation;
-              this.speaker.speakerPosition = docs.data().speakerPosition;
-            }
+            console.log(docs.data());
+            this.speaker.imgURL = docs.data().imgURL;
+            this.speaker.speakerTitle = docs.data().speakerTitle;
+            this.speaker.speakerName = docs.data().speakerName;
+            this.speaker.speakerOrganisation = docs.data().speakerOrganisation;
+            this.speaker.speakerPosition = docs.data().speakerPosition;
           })
         })
       })

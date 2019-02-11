@@ -21,7 +21,7 @@
 
   Details of the event here
 
-  <ion-list *ngFor="let event of events | async">
+  <ion-list *ngIf="event">
     <ion-card>
       <ion-card-header>
         {{event.eventName}}

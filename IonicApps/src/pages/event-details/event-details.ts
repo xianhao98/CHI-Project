@@ -38,11 +38,14 @@ export class EventDetailsPage {
   getDetails() {
     this.db.collection("events").get().subscribe((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        this.db.collection("events").doc(doc.id).collection("speakers").get().subscribe((querySnapshot) => {
-          querySnapshot.forEach((docs) => {
-            console.log('Current Event ID: ', doc.id);
+        this.eventid = doc.id;
+        if (doc.id == this.eventid) {
+          this.db.collection("events").doc(doc.id).collection("speakers").get().subscribe((querySnapshot) => {
+            querySnapshot.forEach((docs) => {
+              console.log('All speaker ID: ', docs.id);
+            })
           })
-        })
+        }
       })
     })
   }

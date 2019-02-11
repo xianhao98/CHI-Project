@@ -63,7 +63,7 @@ export class AllEventsPage {
   openModal(id) {
     this.clicked = true;
     // Push the whole page instead of a modal
-    console.log(id);
+    console.log('Open Modal: ', id);
     this.navCtrl.push(EventModalPage, {eventid: id});
 
     // Modal: displayed as a small window(?) on the webpage

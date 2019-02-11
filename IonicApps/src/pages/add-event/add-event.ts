@@ -3,8 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs-compat/Observable';
 import { Event } from '../../models/event';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { EventDetailsPage } from '../event-details/event-details';
+import firebase from 'firebase';
 
 
 /**
@@ -34,68 +36,74 @@ export class AddEventPage {
     public db: AngularFirestore,
     private camera: Camera,
     private imagePicker: ImagePicker,
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams) {
 
-      this.eventCollection = this.db.collection('events');
-      this.events = this.eventCollection.valueChanges();
+    this.eventCollection = this.db.collection('events');
+    this.events = this.eventCollection.valueChanges();
 
-      this.event.eventType = this.navParams.get('eventType');
-      this.event.eventName = this.navParams.get('eventName');
-      this.event.eventDesc = this.navParams.get('eventDesc');
-      this.event.eventVenue = this.navParams.get('eventVenue');
-      this.event.eventDateStart = this.navParams.get('eventDateStart');
-      this.event.eventDateEnd = this.navParams.get('eventDateEnd');
-      this.event.eventTimeStart = this.navParams.get('eventTimeStart');
-      this.event.eventTimeEnd = this.navParams.get('eventTimeEnd');
-      this.event.imgURL = "https://firebasestorage.googleapis.com/v0/b/chi-project-database.appspot.com/o/conferences%2Fheathcare3.jpg?alt=media&token=1fe12655-e91b-4faa-a143-b2644f292b4f";
-      this.event.slotsTotal = this.navParams.get('slotsTotal');
+    this.event.eventName = this.navParams.get('eventName');
+    this.event.eventDesc = this.navParams.get('eventDesc');
+    this.event.eventVenue = this.navParams.get('eventVenue');
+    this.event.eventDateStart = this.navParams.get('eventDateStart');
+    this.event.eventDateEnd = this.navParams.get('eventDateEnd');
+    this.event.eventTimeStart = this.navParams.get('eventTimeStart');
+    this.event.eventTimeEnd = this.navParams.get('eventTimeEnd');
+    this.event.imgURL = "https://firebasestorage.googleapis.com/v0/b/chi-project-database.appspot.com/o/imgPlaceholder.jpg?alt=media&token=c4c44780-3c10-48db-920f-1473c1e34620";
+    this.event.slotsTotal = this.navParams.get('slotsTotal');
   }
 
-  async addEvent(event: Event) {
+  onChange(value) {
+    console.log(value);
+    this.event.eventType = value;
+  }
+
+  async addEvent(event) {
 
     this.eventCollection.get().subscribe((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         this.eventid = doc.id;
         this.stringSlice(this.eventid);
+        console.log(this.eventid);
       })
     });
 
-    this.eventCollection.add({
-      id: this.event.id,
-      eventType: this.event.eventType,
-      eventName: this.event.eventName,
-      eventDesc: this.event.eventDesc,
-      eventVenue: this.event.eventVenue,
+    setTimeout(function () {
+      this.eventDoc = firebase.firestore().collection("events").doc(this.eventid);
 
-      eventDateStart: this.event.eventDateStart,
-      eventDateEnd: this.event.eventDateEnd,
-      eventTimeStart: this.event.eventTimeStart,
-      eventTimeEnd: this.event.eventTimeEnd,
+      this.eventDoc.set({
+        eventType: event.eventType,
+        eventName: event.eventName,
+        eventDesc: event.eventDesc,
+        eventVenue: event.eventVenue,
 
-      imgURL: this.event.imgURL,
+        eventDateStart: event.eventDateStart,
+        eventDateEnd: event.eventDateEnd,
+        eventTimeStart: event.eventTimeStart,
+        eventTimeEnd: event.eventTimeEnd,
 
-      slotsTotal: this.event.slotsTotal,
-      slotsTaken: this.event.slotsTaken,
-    })
-    console.log(event);
+        imgURL: event.imgURL,
+
+        slotsTaken: event.slotsTaken,
+      })
+      .then(function () {
+        console.log("Added event to firebase")
+      })
+      .catch(function (error) {
+        console.error("Error adding document: ", error);
+      })
+
+      console.log("Added New Event", event);
+    }, 1000);
+
   }
 
-  minus() {
-    this.event.slotsTotal = this.event.slotsTotal  - 1;
-  }
-
-  plus() {
-    this.event.slotsTotal = this.event.slotsTotal  + 1;
-  }
-
-  
 
   // Custom userid that iterates
-  stringSlice(id) {
-    var str = id;
+  stringSlice(uid) {
+    var str = uid;
     var slice = parseInt(str.slice(1, str.length)) + 1;
-    this.eventid = "e" + slice;
+    this.eventid = "e00" + slice;
     console.log(this.eventid);
   }
 
@@ -106,7 +114,7 @@ export class AddEventPage {
   //     encodingType: this.camera.EncodingType.JPEG,
   //     mediaType: this.camera.MediaType.PICTURE
   //   }
-    
+
   //   this.camera.getPicture(options).then((imageData) => {
   //    // imageData is either a base64 encoded string or a file URL
   //    // If it's base64 (DATA_URL):
@@ -128,6 +136,7 @@ export class AddEventPage {
   //     // imageData is either a base64 encoded string or a file URL
   //     // If it's base64:
   //     let base64Image = 'data:image/jpeg;base64,' + imageData;
+  //     this.event.imgURL = base64Image;
   //   }, (err) => {
   //    console.log(err);
   //   })

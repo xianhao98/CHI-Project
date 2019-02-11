@@ -17,8 +17,10 @@
 
   <!-- Event Details -->
   <ion-item>
-    <ion-label stacked>Event Type</ion-label>
-    <ion-select placeholder="Select">
+    <ion-label stacked>
+      Event Type
+    </ion-label>
+    <ion-select #newSelect [(ngModel)]="eventType" (ionChange)="onChange(newSelect.text)">
       <ion-option value="Conference">Conference</ion-option>
       <ion-option value="Masterclass">Masterclass</ion-option>
     </ion-select>
@@ -60,21 +62,17 @@
     <ion-datetime displayFormat="h:mm A" pickerFormat="h:mm A" [(ngModel)]="event.eventTimeEnd"></ion-datetime>
   </ion-item>
 
-  <!-- Image -->
+  <!-- Image
   <p><img src="{{event.imgURL}}"></p>
+
+  <button ion-button block (click)="uploadPhoto()">Upload Photo</button> -->
 
   <ion-item>
     <ion-label stacked>Max Capacity</ion-label>
     <ion-input type="number" [(ngModel)]="event.slotsTotal"></ion-input>
-    <ion-buttons item-end>
-      <button ion-button (click)="minus()">
-        <ion-icon name="remove"></ion-icon>
-      </button>
-      <button ion-button (click)="plus()">
-          <ion-icon name="add"></ion-icon>
-        </button>
-    </ion-buttons>
   </ion-item>
+
+
 
 
   <button ion-button block (click)="addEvent(event)">Add Event</button>
