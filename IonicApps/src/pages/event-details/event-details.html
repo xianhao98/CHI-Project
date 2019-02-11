@@ -21,14 +21,31 @@
 
   Details of the event here
 
-  <ion-list *ngFor="let event of events | async">
+  <ion-list *ngFor="let e of eventdetails">
     <ion-card>
-      <ion-card-header>
-        {{event.eventName}}
-      </ion-card-header>>
-      <ion-card-content>
-        {{eventName}}
-      </ion-card-content>
+        <img src="{{e.imgURL}}" id="pimg"/>
+        <ion-card-header>
+            <p id="uName">
+                {{e.eventName}}, {{e.eventType}}
+            </p>
+        <ion-card-content>
+          <p>
+            <span>Start Date: </span> &nbsp; {{e.eventDateStart}}
+          </p>
+          <p>
+          <span>End Date:</span> &nbsp; {{e.eventDateEnd}}
+          </p>
+          <p>
+          <span>Venue:</span> &nbsp; {{e.eventVenue}}
+          </p>
+          <p>
+          <span>slots:</span> &nbsp;  {{e.eventslots}}
+          </p>
+          <p>
+          <span>Description:</span> &nbsp; {{e.eventDesc}}
+          </p>
+        </ion-card-content>
+        </ion-card-header>
     </ion-card>
   </ion-list>
   

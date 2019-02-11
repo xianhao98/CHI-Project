@@ -53,3 +53,9 @@
 		}
 		
 	}
+	
+	.scroll-content{
+		@media screen and (orientation: landscape){
+			background-color: #fff;
+		}
+	}

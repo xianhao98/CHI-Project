@@ -3,4 +3,9 @@ page-login {
         text-align: center;
         vertical-align: center;
     }
+    .scroll-content{
+		@media screen and (orientation: landscape){
+			background-color: #fff !important;
+		}
+	}
 }

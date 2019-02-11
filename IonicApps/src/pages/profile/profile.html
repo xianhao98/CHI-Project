@@ -17,33 +17,36 @@
 
 
   <ion-list *ngFor="let u of profile">
+      
     <ion-card>
+      <ion-avatar>
+          <img src="{{u.userimg}}" id="pimg"/>
+      </ion-avatar>
         <ion-card-header>
-          <ion-avatar>
-            <img src="{{u.userimg}}"/>
-          </ion-avatar>
-        </ion-card-header>
-          {{u.username}}
+            <p id="uName">
+                {{u.username}}
+            </p>
         <ion-card-content>
           <p>
-            {{u.firstname}} {{u.lastname}}
+            <span>Name: </span> &nbsp; {{u.firstname}} {{u.lastname}}
           </p>
           <p>
-            {{u.dob}}
+          <span>Dob:</span> &nbsp; {{u.dob}}
           </p>
           <p>
-            {{u.gender}}
+          <span>Gender:</span> &nbsp; {{u.gender}}
           </p>
           <p>
-            {{u.email}}
+          <span>Email:</span> &nbsp;  {{u.email}}
           </p>
           <p>
-            {{u.address}}
+          <span>Address:</span> &nbsp; {{u.address}}
           </p>
           <p>
-            {{u.cn}}
+          <span>Contact Number:</span> &nbsp; {{u.cn}}
           </p>
         </ion-card-content>
+        </ion-card-header>
       </ion-card>
   </ion-list>
     

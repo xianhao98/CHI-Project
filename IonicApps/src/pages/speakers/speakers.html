@@ -34,19 +34,19 @@
 
   <h4 padding>Speakers</h4>
 
-  <ion-list *ngFor="let speaker of speakers">
+  <ion-list *ngFor="let s of speaker">
     <ion-card>
       <ion-item class="ion-card-header">
         <ion-avatar item-start>
-          <img src="{{speaker.imgURL}}" />
+          <img src="{{s.imgURL}}" />
         </ion-avatar>
 
         <h2 class="whitespace">
-          {{speaker.speakerTitle}} {{speaker.speakerName}}
+          {{s.speakerTitle}} {{s.speakerName}}
         </h2>
         <p class="whitespace">
-          {{speaker.speakerOrganisation}}
-          {{speaker.speakerPosition}}
+          {{s.speakerOrganisation}}
+          {{s.speakerPosition}}
         </p>
 
         <button ion-button clear color="secondary" (click)="openModal()" item-end>
