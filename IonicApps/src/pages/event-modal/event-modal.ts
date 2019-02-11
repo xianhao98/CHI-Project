@@ -37,7 +37,7 @@ export class Tab1 { }
   templateUrl: 'event-modal.html',
 })
 export class EventModalPage {
-
+  eventid: string;
   tab1: any;
   tab2: any;
 
@@ -45,10 +45,10 @@ export class EventModalPage {
     public db: AngularFirestore,
     private viewCtrl: ViewController,
     private navParams: NavParams) {
-
+      this.eventid = this.navParams.get('eventid');
+      console.log(this.eventid);
       this.tab1 = EventDetailsPage;
       this.tab2 = SpeakersPage;
-
     }
 
 

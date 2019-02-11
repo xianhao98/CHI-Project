@@ -53,16 +53,18 @@ export class AllEventsPage {
     this.eventCollection.get().subscribe((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         eventid = doc.id;
+        console.log(this.events);
         console.log("All Event ID:", eventid);
       });
     });
 
   }
 
-  openModal() {
+  openModal(id) {
     this.clicked = true;
     // Push the whole page instead of a modal
-    this.navCtrl.push(EventModalPage, {eventid: eventid});
+    console.log(id);
+    this.navCtrl.push(EventModalPage, {eventid: id});
 
     // Modal: displayed as a small window(?) on the webpage
     // const eventModal = this.modalCtrl.create(EventModalPage);
@@ -71,9 +73,8 @@ export class AllEventsPage {
     // console.log("Presented the new EventModalPage");
   }
 
-  register(v) {
-    console.log(v);
-    this.navCtrl.push(EventRegistrationPage, {value:v});
+  register() {
+    this.navCtrl.push(EventRegistrationPage);
   }
 
 }
