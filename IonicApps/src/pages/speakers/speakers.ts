@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController, ModalController, ViewController } from 'ionic-angular';
 import 'firebase/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -17,19 +17,19 @@ import { SpeakerModalPage } from '../speaker-modal/speaker-modal';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+var data =[];
 
 @IonicPage()
 @Component({
   selector: 'page-speakers',
   templateUrl: 'speakers.html',
 })
-export class SpeakersPage {
+export class SpeakersPage implements OnInit{
 
   speakerid: string;
   eventid: string;
 
-  speaker = {} as Speaker;
+  speaker: Speaker[];
 
   constructor(
     public db: AngularFirestore,
@@ -52,26 +52,33 @@ export class SpeakersPage {
     // console.log(this.speaker.speakerName);
     this.eventid = this.navParams.get('eventid');
     console.log('Passed eventid: ', this.eventid);
-
     this.getDetails();
 
   }
-
+  ngOnInit(){
+    setTimeout(() => {
+      console.log("in ngOnInit method");
+      console.log(data);
+      console.log(data.length);
+      this.speaker = [
+        new Speaker(data[0],data[1],data[2],data[3],data[4]),
+        new Speaker(data[5],data[6],data[7],data[8],data[9]),
+        new Speaker(data[10],data[11],data[12],data[13],data[14])
+      ];
+    }, 2100);
+  }
   getDetails() {
-    this.db.collection("events").get().subscribe((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        this.db.collection("events").doc(doc.id).collection("speakers").get().subscribe((querySnapshot) => {
+    console.log("in method")
+        this.db.collection("events").doc("e001").collection("speakers").get().subscribe((querySnapshot) => {
           querySnapshot.forEach((docs) => {
-            console.log(docs.data());
-            this.speaker.imgURL = docs.data().imgURL;
-            this.speaker.speakerTitle = docs.data().speakerTitle;
-            this.speaker.speakerName = docs.data().speakerName;
-            this.speaker.speakerOrganisation = docs.data().speakerOrganisation;
-            this.speaker.speakerPosition = docs.data().speakerPosition;
+              console.log(docs.data());
+              data.push(docs.data().imgURL);
+              data.push(docs.data().speakerTitle);
+              data.push(docs.data().speakerName);
+              data.push(docs.data().speakerOrganisation);
+              data.push(docs.data().speakerPosition);
           })
         })
-      })
-    })
   }
 
   openModal() {

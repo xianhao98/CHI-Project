@@ -7,4 +7,9 @@ page-all-events {
     .whitespace {
         white-space: initial;
     }
+    .scroll-content{
+		@media screen and (orientation: landscape){
+			background-color: #ECE9E4 !important;
+		}
+	}
 }
