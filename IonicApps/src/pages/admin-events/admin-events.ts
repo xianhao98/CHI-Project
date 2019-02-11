@@ -4,6 +4,8 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs-compat/Observable';
+import { AddEventPage } from '../add-event/add-event';
+import { EditEventPage } from '../edit-event/edit-event';
 
 /**
  * Generated class for the AdminEventsPage page.
@@ -19,7 +21,7 @@ import { Observable } from 'rxjs-compat/Observable';
 })
 export class AdminEventsPage {
 
-  eventID: any;
+  eventid: any;
   eventCollection: AngularFirestoreCollection<any>;
   eventDoc: AngularFirestoreDocument<any>;
   events: Observable<any>;
@@ -30,73 +32,39 @@ export class AdminEventsPage {
     public navCtrl: NavController,
     public navParams: NavParams) {
 
-      this.eventCollection = this.db.collection('events');
-      this.events = this.eventCollection.valueChanges();
-    }
-
-  // ADD NEW EVENT
-  addEvent() {
-    let alert = this.alertCtrl.create({
-      title: 'Add Event',
-      inputs: [{
-        name: 'eventName',
-        placeholder: 'Enter event name'
-      }],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        },
-        {
-          text: 'Add',
-          handler: data => {
-            this.eventCollection.add(data).then(doc => {
-              console.log(doc.id);
-              this.eventID = doc.id;
-              this.db.doc(`events/${doc.id}`).update({id: this.eventID});
-            })
-            .catch(err => {
-              console.log(err);
-            })
-          }
-        }
-      ]
-    });
-    alert.present();
+    this.eventCollection = this.db.collection('events');
+    this.events = this.eventCollection.snapshotChanges();
   }
 
-  // EDIT AND UPDATE EXISTING EVENT
-  edit(event) {
-    let alert = this.alertCtrl.create({
-      title: 'Edit Event',
-      inputs: [{
-        name: 'eventName',
-        value: event.eventName,
-        placeholder: 'Edit event name'
-      }],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        },
-        {
-          text: 'Save',
-          handler: data => {
-            this.eventCollection.get().subscribe((querySnapshot) => {
-              querySnapshot.forEach((doc) => {
-                this.eventCollection.doc(doc.id).update(data);
-              })
-            })
-          }
-        }
-      ]
-    });
-    alert.present();
+  toAddEventPage() {
+    this.navCtrl.push(AddEventPage);
   }
 
-  // DELETE EXISTING EVENT
-  delete(event) {
-    this.db.doc(`events/${event.id}`).delete();
+  toEditEventPage() {
+    this.navCtrl.push(EditEventPage);
   }
+
+  // addEvent(eventName: string, eventDesc: string, slotsTotal: number) {
+
+  //   this.eventCollection.add({ eventName: eventName, eventDesc: eventDesc, slotsTotal: slotsTotal });
+  //   console.log('Added event!')
+
+  // }
+
+  // updateEvent(event: Event) {
+  //   this.eventCollection.get().subscribe((querySnapshot) => {
+  //     querySnapshot.forEach((doc) => {
+  //       this.eventid = doc.id;
+  //       console.log(this.eventid);
+  //       if (this.eventid == doc.id) {
+  //         this.eventCollection.doc(this.eventid).update({ eventName: 'eventName', eventDesc : 'eventDesc' , slotsTotal : 'slotsTotal' });
+  //         console.log('Updated event!');
+  //       }
+  //       else {
+  //         console.log('Event not updated.');
+  //       }
+  //     })
+  //   });
+  // }
 
 }

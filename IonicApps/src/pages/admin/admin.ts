@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AdminEventsPage } from '../admin-events/admin-events';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the AdminPage page.
@@ -21,6 +22,10 @@ export class AdminPage {
 
   toAdminEventsPage() {
     this.navCtrl.push(AdminEventsPage);
+  }
+
+  toHomePage() {
+    this.navCtrl.setRoot(HomePage);
   }
 
 }

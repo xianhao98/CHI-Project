@@ -97,7 +97,6 @@ export class RegisterPage {
           });
 
           setTimeout(function () {
-            console.log(userid);
             this.userDoc = firebase.firestore().collection("Users").doc(userid);
             // Add new document
             this.userDoc.set({

@@ -6,11 +6,20 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-      <ion-title>About Us</ion-title>
-    </ion-navbar>
-  
-    <!-- <ion-toolbar>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-buttons end>
+      <button ion-button clear color="light" (click)="toHomePage()" item-end>
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>About Us</ion-title>
+  </ion-navbar>
+
+  <!-- <ion-toolbar>
       <ion-segment>
         <ion-segment-button>
           Conferences
@@ -23,23 +32,22 @@
         </ion-segment-button>
       </ion-segment>
     </ion-toolbar> -->
-  
-  </ion-header>
 
-  
-  <ion-content padding>
-      <ion-list *ngFor = "let p of aboutUs">
-          <h1>{{p.Mheader}}</h1>
-          <p>{{p.Msubdesc}}</p>
-          <ion-card>
-              <ion-card-header>
-                <h2>{{p.header}}</h2>
-              </ion-card-header>
-              <ion-card-content>
-                  <h3>{{p.maindesc}}</h3>
-                  <p>{{p.subdesc}}</p>
-              </ion-card-content>
-          </ion-card>
-        </ion-list>
-  </ion-content>
-  
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list *ngFor="let p of aboutUs">
+    <h1>{{p.Mheader}}</h1>
+    <p>{{p.Msubdesc}}</p>
+    <ion-card>
+      <ion-card-header>
+        <h2>{{p.header}}</h2>
+      </ion-card-header>
+      <ion-card-content>
+        <h3>{{p.maindesc}}</h3>
+        <p>{{p.subdesc}}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

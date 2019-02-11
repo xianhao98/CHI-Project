@@ -10,6 +10,7 @@ import { auth } from 'firebase';
 import firebase from 'firebase';
 import { AboutUs } from '../../models/aboutUs';
 import { ValueTransformer } from '@angular/compiler/src/util';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the AboutUsPage page.
@@ -60,6 +61,10 @@ export class AboutUsPage implements OnInit{
         })
       });
     });
+  }
+
+  toHomePage() {
+    this.navCtrl.setRoot(HomePage);
   }
 
 

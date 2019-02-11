@@ -14,7 +14,7 @@
       </ion-buttons>
   
       <ion-buttons end>
-        <button ion-button icon-only (click)="addEvent()">
+        <button ion-button icon-only (click)="toAddEventPage()">
           <ion-icon name="md-add-circle"></ion-icon>
         </button>
       </ion-buttons>
@@ -34,12 +34,12 @@
           {{ event.eventName }}
         </ion-item>
         <ion-item-options side="right">
-          <button ion-button icon-only (click)="edit(event)">
-            <ion-icon name="settings"></ion-icon>
+          <button ion-button icon-only (click)="toEditEventPage()">
+            <ion-icon name="create"></ion-icon>
           </button>
-          <button ion-button icon-only color="danger" (click)="delete(event)">
+          <!-- <button ion-button icon-only color="danger" (click)="delete(event)">
             <ion-icon name="trash"></ion-icon>
-          </button>
+          </button> -->
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>

@@ -53,6 +53,12 @@ import { AdminPageModule } from '../pages/admin/admin.module';
 import { AdminPage } from '../pages/admin/admin';
 import { AdminEventsPage } from '../pages/admin-events/admin-events';
 import { AdminEventsPageModule } from '../pages/admin-events/admin-events.module';
+import { AddEventPageModule } from '../pages/add-event/add-event.module';
+import { EditEventPageModule } from '../pages/edit-event/edit-event.module';
+import { EditEventPage } from '../pages/edit-event/edit-event';
+import { AddEventPage } from '../pages/add-event/add-event';
+import { Camera } from '@ionic-native/camera/ngx';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
 @NgModule({
   declarations: [
@@ -71,6 +77,8 @@ import { AdminEventsPageModule } from '../pages/admin-events/admin-events.module
     AngularFireDatabaseModule,
     AdminPageModule,
     AdminEventsPageModule,
+    AddEventPageModule,
+    EditEventPageModule,
     AboutUsPageModule,
     ConferencesPageModule,
     EventCategoriesPageModule,
@@ -94,6 +102,8 @@ import { AdminEventsPageModule } from '../pages/admin-events/admin-events.module
     HomePage,
     AdminPage,
     AdminEventsPage,
+    AddEventPage,
+    EditEventPage,
     ProfilePage,
     LandingPage,
     LoginPage,
@@ -115,7 +125,9 @@ import { AdminEventsPageModule } from '../pages/admin-events/admin-events.module
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    Camera,
+    ImagePicker,
   ]
 })
 export class AppModule { }

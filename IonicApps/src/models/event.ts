@@ -1,11 +1,10 @@
 export interface Event {
 
-    eventName: string,
-    eventDesc: string,
-    eventvenue: string,
-    eventType: string,
-
-    imgUrl?: string,
+    id?: number,
+    eventType?: string,
+    eventName?: string,
+    eventDesc?: string,
+    eventVenue?: string,
 
     eventDateStart?: string,
     eventDateEnd?: string,
@@ -13,6 +12,9 @@ export interface Event {
     eventTimeEnd?: string,
     eventDuration?: number,
 
-    slotsTaken?: string,
+    imgURL?: string,
+
     slotsTotal?: string,
+    slotsTaken?: string,
+    
 }

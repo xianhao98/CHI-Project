@@ -36,4 +36,8 @@ export class EventCategoriesPage {
     this.navCtrl.push(MasterclassesPage);
   }
 
+  toHomePage() {
+    this.navCtrl.setRoot(HomePage);
+  }
+
 }

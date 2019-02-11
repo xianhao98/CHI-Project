@@ -56,7 +56,7 @@ export class EventsPage {
             this.eventCollection.add(data).then(result => {
               console.log(result.id);
               this.eventID = result.id;
-              this.db.doc(`Events/${result.id}`).update({id: this.eventID});
+              this.db.doc(`events/${result.id}`).update({id: this.eventID});
             })
             .catch(err => {
               console.log(err);
@@ -85,7 +85,7 @@ export class EventsPage {
         {
           text: 'Save',
           handler: data => {
-            this.db.doc(`Events/${event.id}`).update(data);
+            this.db.doc(`events/${event.id}`).update(data);
           }
         }
       ]
@@ -95,7 +95,7 @@ export class EventsPage {
 
   // DELETE EXISTING EVENT
   delete(event) {
-    this.db.doc(`Events/${event.id}`).delete();
+    this.db.doc(`events/${event.id}`).delete();
   }
 
 }
