@@ -39,21 +39,21 @@ export class AdminEventsPage implements OnInit{
   }
 
   ngOnInit(){
-    setTimeout(() => {
-      console.log("in ngOnInit method");
-      console.log(data);
-      console.log(data.length);
-      this.eventDetails = [
-        new eventDetails(data[0])
-      ];
-    }, 1000);
+    // setTimeout(() => {
+    //   console.log("in ngOnInit method");
+    //   console.log(data);
+    //   console.log(data.length);
+    //   this.eventDetails = [
+    //     new eventDetails(data[0])
+    //   ];
+    // }, 1000);
   }
 
   getDetails() {
-    this.db.collection("events").get().subscribe(doc => {
-      console.log(doc.data());
-      data.push(doc.data().eventName);
-    })
+    // this.db.collection("events").get().subscribe(doc => {
+    //   console.log(doc.data());
+    //   data.push(doc.data().eventName);
+    // })
   }
 
   toAddEventPage() {

@@ -33,6 +33,7 @@ export class AllEventsPage {
 
   event = {} as Event;
 
+  eventsRegistered: AngularFirestoreCollection<Event>;
   eventCollection: AngularFirestoreCollection<Event>;
   //eventDoc: AngularFirestoreDocument<Event>;
   events: Observable<Event[]>;
@@ -64,7 +65,7 @@ export class AllEventsPage {
     this.clicked = true;
     // Push the whole page instead of a modal
     console.log('Open Modal: ', id);
-    this.navCtrl.push(EventModalPage, {eventid: id});
+    this.navCtrl.push(EventModalPage, { eventid: id });
 
     // Modal: displayed as a small window(?) on the webpage
     // const eventModal = this.modalCtrl.create(EventModalPage);
@@ -74,7 +75,55 @@ export class AllEventsPage {
   }
 
   register() {
-    this.navCtrl.push(EventRegistrationPage);
+    // this.navCtrl.push(EventRegistrationPage);
+    this.showConfirm();
+
+  }
+
+  showConfirm() {
+    const confirm = this.alertCtrl.create({
+      title: 'Register',
+      message: 'Register for this event?',
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('Register Cancelled');
+          }
+        },
+        {
+          text: 'Confirm',
+          handler: () => {
+            console.log('Register Successful.');
+
+            setTimeout(function () {
+              this.eventsRegistered = firebase.firestore().collection("Users").doc("U2").collection("registeredEvents").doc();
+
+              this.eventsRegistered.set({ eventid: eventid })
+
+                .then(function () {
+                  console.log("Doc written to database");
+                })
+                .catch(function (error) {
+                  console.error("Error adding document: ", error);
+                });
+            }, 1000);
+
+            this.showAlert('Success', 'You are now registered for this event.');
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  showAlert(title, subTitle) {
+    const alert = this.alertCtrl.create({
+      title: title,
+      subTitle: subTitle,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }
