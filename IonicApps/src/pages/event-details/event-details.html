@@ -17,37 +17,38 @@
 </ion-header>
 
 
-<ion-content padding>
-
-  Details of the event here
+<ion-content>
 
   <ion-list *ngFor="let e of eventdetails">
     <ion-card>
-        <img src="{{e.imgURL}}" id="pimg"/>
-        <ion-card-header>
-            <p id="uName">
-                {{e.eventName}}, {{e.eventType}}
-            </p>
+      <img src="{{e.imgURL}}" id="pimg" />
+      <ion-card-header>
+        <p>
+          {{e.eventType}}
+        </p>
+        <p id="uName">
+          {{e.eventName}}
+        </p>
         <ion-card-content>
           <p>
             <span>Start Date: </span> &nbsp; {{e.eventDateStart}}
           </p>
           <p>
-          <span>End Date:</span> &nbsp; {{e.eventDateEnd}}
+            <span>End Date:</span> &nbsp; {{e.eventDateEnd}}
           </p>
           <p>
-          <span>Venue:</span> &nbsp; {{e.eventVenue}}
+            <span>Venue:</span> &nbsp; {{e.eventVenue}}
           </p>
           <p>
-          <span>slots:</span> &nbsp;  {{e.eventslots}}
+            <span>slots:</span> &nbsp; {{e.eventslots}}
           </p>
           <p>
-          <span>Description:</span> &nbsp; {{e.eventDesc}}
+            <span>Description:</span> &nbsp; {{e.eventDesc}}
           </p>
         </ion-card-content>
-        </ion-card-header>
+      </ion-card-header>
     </ion-card>
   </ion-list>
-  
+
 
 </ion-content>

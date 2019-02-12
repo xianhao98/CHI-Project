@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import firebase from 'firebase';
 import 'firebase/firestore';
@@ -6,6 +6,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs-compat/Observable';
 import { AddEventPage } from '../add-event/add-event';
 import { EditEventPage } from '../edit-event/edit-event';
+import { eventDetails } from '../../models/eventdetails';
 
 /**
  * Generated class for the AdminEventsPage page.
@@ -19,12 +20,13 @@ import { EditEventPage } from '../edit-event/edit-event';
   selector: 'page-admin-events',
   templateUrl: 'admin-events.html',
 })
-export class AdminEventsPage {
+export class AdminEventsPage implements OnInit{
+  
 
   eventid: any;
-  eventCollection: AngularFirestoreCollection<any>;
-  eventDoc: AngularFirestoreDocument<any>;
-  events: Observable<any>;
+  // eventCollection: AngularFirestoreCollection<any>;
+  // eventDoc: AngularFirestoreDocument<any>;
+  // events: Observable<any>;
 
   constructor(
     public db: AngularFirestore,
@@ -32,8 +34,26 @@ export class AdminEventsPage {
     public navCtrl: NavController,
     public navParams: NavParams) {
 
-    this.eventCollection = this.db.collection('events');
-    this.events = this.eventCollection.snapshotChanges();
+    // this.eventCollection = this.db.collection('events');
+    // this.events = this.eventCollection.valueChanges();
+  }
+
+  ngOnInit(){
+    setTimeout(() => {
+      console.log("in ngOnInit method");
+      console.log(data);
+      console.log(data.length);
+      this.eventDetails = [
+        new eventDetails(data[0])
+      ];
+    }, 1000);
+  }
+
+  getDetails() {
+    this.db.collection("events").get().subscribe(doc => {
+      console.log(doc.data());
+      data.push(doc.data().eventName);
+    })
   }
 
   toAddEventPage() {
