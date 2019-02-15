@@ -3,8 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs-compat/Observable';
 import { Event } from '../../models/event';
-import { Camera, CameraOptions } from '@ionic-native/camera';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { EventDetailsPage } from '../event-details/event-details';
 import firebase from 'firebase';
 
@@ -34,8 +32,6 @@ export class AddEventPage {
 
   constructor(
     public db: AngularFirestore,
-    private camera: Camera,
-    private imagePicker: ImagePicker,
     public navCtrl: NavController,
     public navParams: NavParams) {
 

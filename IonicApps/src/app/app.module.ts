@@ -57,8 +57,6 @@ import { AddEventPageModule } from '../pages/add-event/add-event.module';
 import { EditEventPageModule } from '../pages/edit-event/edit-event.module';
 import { EditEventPage } from '../pages/edit-event/edit-event';
 import { AddEventPage } from '../pages/add-event/add-event';
-import { Camera } from '@ionic-native/camera';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
 @NgModule({
   declarations: [
@@ -126,8 +124,6 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    Camera,
-    ImagePicker,
   ]
 })
 export class AppModule { }
